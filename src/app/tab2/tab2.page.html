@@ -1,0 +1,27 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Playlist
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Tab 2</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+    <ion-list>
+     <ion-item padding *ngFor="let d of data" >
+       <ion-icon name="arrow-forward" (click)="toggleDetails(d)"></ion-icon>
+       {{d.title}}      
+       <div *ngIf="d.showDetails">
+         {{d.details}}
+       </div>
+     </ion-item>
+    </ion-list>
+
+</ion-content>

@@ -1,0 +1,45 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Today's Engish
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+  </ion-header>
+
+        <ion-grid>
+          <ion-row>
+            <ion-col style="margin: auto; width: 100%;">
+              <youtube-player
+              [videoId]="videoId"
+              >
+              </youtube-player>    
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-col>
+              <ion-button expand="block" (click)="getsSpeed100()">Speed 100%</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" (click)="getsSpeed50()">Speed 50%</ion-button>
+            </ion-col>
+            <ion-col>
+              <ion-button expand="block" (click)="getsSpeed25()">Speed 25%</ion-button>
+            </ion-col>
+          </ion-row>
+
+        <div style="width:100%;height:400px;overflow:auto;">
+          <ul *ngFor="let caption of captions[0]">
+            <li (click)="moveToTime(caption[0])">{{caption[1]}} </li>
+          </ul>
+        </div>
+          
+
+        </ion-grid>
+
+
+</ion-content>
