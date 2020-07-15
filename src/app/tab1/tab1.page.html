@@ -12,9 +12,10 @@
 
         <ion-grid>
           <ion-row>
-            <ion-col style="margin: auto; width: 100%;">
+            <ion-col>
               <youtube-player
               [videoId]="videoId"
+              [width]="500"
               >
               </youtube-player>    
             </ion-col>
@@ -22,13 +23,9 @@
 
           <ion-row>
             <ion-col>
-              <ion-button expand="block" (click)="getsSpeed100()">Speed 100%</ion-button>
-            </ion-col>
-            <ion-col>
-              <ion-button expand="block" (click)="getsSpeed50()">Speed 50%</ion-button>
-            </ion-col>
-            <ion-col>
-              <ion-button expand="block" (click)="getsSpeed25()">Speed 25%</ion-button>
+              <ion-button (click)="getsSpeed100()">Speed 100%</ion-button>
+              <ion-button (click)="getsSpeed50()">Speed 50%</ion-button>
+              <ion-button (click)="getsSpeed25()">Speed 25%</ion-button>
             </ion-col>
           </ion-row>
 
