@@ -84,6 +84,7 @@ function jsonToCsv(json, options) {
   }
   return lines.concat(json
     .map(entry => keys.map(key => entry[key]).join(options.delimiter)))
+    .map(entry => entry.replace("-",""))
     .map(entry => entry.split("	"))
 }
 
