@@ -1,43 +1,40 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" >
   <ion-toolbar>
     <ion-title>
-      Today's Engish
+      YouTuben
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-  </ion-header>
+<ion-content>
+  <div class="centering_parent" >
+    <ion-grid>
+    <ion-row>
+      <ion-col>
+        <youtube-player
+        [videoId]="videoId"
+        [width]="300"    
+        [height]="200" 
+        >
+        </youtube-player>    
+      </ion-col>
+    </ion-row>
 
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <youtube-player
-              [videoId]="videoId"
-              [width]="300"    
-              [height]="200" 
-              >
-              </youtube-player>    
-            </ion-col>
-          </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-button (click)="getsSpeed100()">100%</ion-button>
+        <ion-button (click)="getsSpeed50()">50%</ion-button>
+        <ion-button (click)="getsSpeed25()">25%</ion-button>
+      </ion-col>
+    </ion-row>
 
-          <ion-row>
-            <ion-col>
-              <ion-button (click)="getsSpeed100()">100%</ion-button>
-              <ion-button (click)="getsSpeed50()">50%</ion-button>
-              <ion-button (click)="getsSpeed25()">25%</ion-button>
-            </ion-col>
-          </ion-row>
+    <div style="width:100%;height:600px;overflow:auto;">
+      <ul *ngFor="let caption of captions[0]">
+        <li (click)="moveToTime(caption[0])">{{caption[1]}} </li>
+      </ul>
+    </div>
 
-        <div style="width:100%;height:400px;overflow:auto;">
-          <ul *ngFor="let caption of captions[0]">
-            <li (click)="moveToTime(caption[0])">{{caption[1]}} </li>
-          </ul>
-        </div>
-          
-
-        </ion-grid>
-
+  </ion-grid>
+</div>
 
 </ion-content>

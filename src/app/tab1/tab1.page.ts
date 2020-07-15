@@ -47,17 +47,14 @@ export class Tab1Page {
     console.log("B is clicked");
     this.pointB = this.youtubePlayer.getCurrentTime();
     this.youtubePlayer.seekTo(this.pointA, true);
-
-//    loadYouTubeSubtitles();
   }
 
 
 　// 指定の時間に移動する　
   moveToTime(time){
     var seconds = Number(time.split(":")[0]*60) + Number(time.split(":")[1])
-    console.log(seconds);
     this.youtubePlayer.seekTo(seconds, true);
-    this.youtubePlayer.playVideo();    
+    this.youtubePlayer.playVideo();
   }
 
   freeMarker() {
