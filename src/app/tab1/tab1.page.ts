@@ -23,6 +23,8 @@ export class Tab1Page {
   pointA = 0;
   pointB = 0;
 
+  captionFlag = true;
+
   public items: Array<any>;
  
   @ViewChild(YouTubePlayer) youtubePlayer: YouTubePlayer;
@@ -57,6 +59,20 @@ export class Tab1Page {
     var seconds = Number(time.split(":")[0]*60) + Number(time.split(":")[1])
     this.youtubePlayer.seekTo(seconds, true);
     this.youtubePlayer.playVideo();
+  }
+
+  changeCaption(){
+    if(this.captionFlag == true){
+      this.captionFlag = false;
+      console.log(this.captionFlag);
+    }else if(this.captionFlag == false){
+      this.captionFlag = true;
+      console.log(this.captionFlag);
+    }
+  }
+
+  checkCaptionFlag(){
+    return this.captionFlag;
   }
 
   freeMarker() {
