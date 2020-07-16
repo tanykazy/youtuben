@@ -11,10 +11,15 @@ import { AppComponent } from './app.component';
 
 import {YouTubePlayerModule} from '@angular/youtube-player'; 
 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, YouTubePlayerModule],
+  imports: [BrowserModule, 
+            IonicModule.forRoot(), 
+            AppRoutingModule, 
+            YouTubePlayerModule
+            ],
   providers: [
     StatusBar,
     SplashScreen,
