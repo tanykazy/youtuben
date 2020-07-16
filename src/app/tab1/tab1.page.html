@@ -30,8 +30,12 @@
 
     <div style="width:100%;height:600px;overflow:auto;">
       <ul *ngFor="let caption of captions[0]">
-        <li (click)="moveToTime(caption[0])">{{caption[1]}} </li>
+        <li (click)="moveToTime(caption[0])">{{caption[1]}}</li>
       </ul>
+      <ul *ngFor="let caption of captions[1]">
+        <li (click)="moveToTime(caption[0])">{{caption[1]}}</li>
+      </ul>
+
     </div>
 
   </ion-grid>

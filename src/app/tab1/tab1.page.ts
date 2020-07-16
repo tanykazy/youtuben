@@ -1,6 +1,8 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {YouTubePlayer} from '@angular/youtube-player';
-import {loadYouTubeSubtitles, result} from '../utils/getYoutubeCaption'
+
+import {captions} from '../utils/getYoutubeCaptionEnglish'
+
 
 import { NavController } from '@ionic/angular';
 
@@ -90,9 +92,9 @@ export class Tab1Page {
     tag.src = "https://www.youtube.com/iframe_api";
     document.body.appendChild(tag);
 
-    this.captions = result;
+    this.captions = captions;
 
-    console.log(result);
+    console.log(captions);
   }
 
   data: Array<{title: string, showDetails: boolean}> = [];
