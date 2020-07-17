@@ -17,7 +17,7 @@ export class Tab2Page {
   }
   public form = [
     { val: 'フォニックス ', isChecked: true },
-    { val: '音声学', isChecked: false },
+    { val: '音声学', isChecked: true },
     { val: 'Nas English', isChecked: false }
   ];
 
