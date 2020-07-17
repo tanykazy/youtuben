@@ -14,23 +14,13 @@ export class Tab2Page {
 
   data: Array<{title: string, details: string, icon: string, showDetails: boolean}> = [];
   constructor(public navCtrl: NavController) {
-  for(let i = 0; i < 10; i++ ){
-      this.data.push({
-        title: 'Title '+i,
-        details: 'The link to the video',
-        icon: 'ios-add-circle-outline',
-        showDetails: false
-      });
-    }
   }
-  toggleDetails(data) {
-    if (data.showDetails) {
-      data.showDetails = false;
-      data.icon = 'add-outline';
-    } else {
-      data.showDetails = true;
-      data.icon = 'ios-remove-circle-outline';
-    }
-  }
+  public form = [
+    { val: 'フォニックス ', isChecked: true },
+    { val: '音声学', isChecked: false },
+    { val: 'Nas English', isChecked: false }
+  ];
+
+
 
 }
