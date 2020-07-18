@@ -30,7 +30,7 @@ export class Tab1Page {
     console.log('played', event);
   }
   
-  play(): void {
+  play() {
     this.plyr.player.play()
   }  
  
@@ -44,9 +44,6 @@ export class Tab1Page {
     this.plyr.player.currentTime = 0;
     this.plyr.player.currentTime = seconds;
     this.plyr.player.play();
-    // ボリューム
-    this.plyr.player.increaseVolume();
-
   }
 
   changeCaption(){
@@ -82,6 +79,7 @@ export class Tab1Page {
     this.captions = captions;
 
     console.log(captions);
+
   }
 
 }
