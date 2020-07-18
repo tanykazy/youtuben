@@ -4,9 +4,14 @@
 <ion-content [fullscreen]="true">
 
   <div class="centering_parent" >
+    <div id="timeChart" 
+      [chart]="chart"
+      >
+    </div>
     <br/>
-    <div [chart]="chart"></div>
-    <br/>
+    <ion-button (click)="getChartWidth()">グラフの幅を取得</ion-button>
+    <ion-label>{{clientWidth}}</ion-label>
+
   </div>
 
 </ion-content>

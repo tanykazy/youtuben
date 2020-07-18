@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Chart, StockChart } from 'angular-highcharts';
 
 @Component({
@@ -8,7 +8,18 @@ import { Chart, StockChart } from 'angular-highcharts';
 })
 export class Tab3Page {
 
-  constructor() {}
+  private _chartDom: HTMLElement;
+
+  constructor(chartDom: ElementRef) {
+    this._chartDom = chartDom.nativeElement;
+  }
+
+  clientWidth: number;
+  getChartWidth() {
+    console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth)
+    this.clientWidth = this._chartDom.querySelectorAll('#timeChart')[0].clientWidth
+  }
+
 
   totalHours: number = 1;
 

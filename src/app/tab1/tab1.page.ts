@@ -63,6 +63,7 @@ export class Tab1Page {
   getsSpeed100(){
     this.plyr.player.speed = 1;
     this.plyr.player.play();
+
   }
 
   getsSpeed50(){
