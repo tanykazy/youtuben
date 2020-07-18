@@ -44,6 +44,9 @@ export class Tab1Page {
     this.plyr.player.currentTime = 0;
     this.plyr.player.currentTime = seconds;
     this.plyr.player.play();
+    // ボリューム
+    this.plyr.player.increaseVolume();
+
   }
 
   changeCaption(){
