@@ -5,7 +5,7 @@ import {captions} from '../utils/getYoutubeCaptionEnglish'
 
 
 import { NavController } from '@ionic/angular';
-
+import { PlyrComponent } from 'ngx-plyr';
 
 @Component({
   selector: 'app-tab1',
@@ -14,6 +14,26 @@ import { NavController } from '@ionic/angular';
 })
 
 export class Tab1Page {
+
+  @ViewChild(PlyrComponent)
+  plyr: PlyrComponent;
+ 
+  videoSources: Plyr.Source[] = [
+    {
+      src: 'p13eKmDz88g',
+      provider: 'youtube',
+    },
+  ];
+  
+  played(event: Plyr.PlyrEvent) {
+    console.log('played', event);
+  }
+  
+  play(): void {
+    //this.player.play(); // or this.plyr.player.play()
+    this.plyr.player.play()
+  }  
+
 
   title = "Practice"
   videoId: string = "p13eKmDz88g";
@@ -30,7 +50,8 @@ export class Tab1Page {
   @ViewChild(YouTubePlayer) youtubePlayer: YouTubePlayer;
 
   clickPlay() {
-    this.youtubePlayer.playVideo();
+  //  this.youtubePlayer.playVideo();
+    this.plyr.player.play()
   }
 
   clickPause() {
@@ -80,11 +101,16 @@ export class Tab1Page {
   }
 
   getsSpeed100(){
-    this.youtubePlayer.setPlaybackRate(1);
+//    this.youtubePlayer.setPlaybackRate(1);
+    this.plyr.player.speed = 1;
+    this.plyr.player.play();
   }
 
   getsSpeed50(){
-    this.youtubePlayer.setPlaybackRate(0.5);
+//    this.youtubePlayer.setPlaybackRate(0.5);
+    this.plyr.player.play();
+    this.plyr.player.speed = 0.5;
+    console.log(this.plyr.player.speed);
   }
 
   getsSpeed25(){

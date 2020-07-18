@@ -6,17 +6,7 @@
     <ion-grid>
     <ion-row>
       <ion-col>
-        <youtube-player
-        [videoId]="videoId"
-        [width]="300"    
-        [height]="200" 
-        >
-        </youtube-player>    
-      </ion-col>
-    </ion-row>
-
-    <ion-row>
-      <ion-col>
+        <plyr style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true" [plyrSources]="videoSources" (plyrInit)="player = $event" (plyrPlay)="played($event)"></plyr>
       </ion-col>
     </ion-row>
 

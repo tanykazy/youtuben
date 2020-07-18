@@ -9,6 +9,8 @@ import { Tab1PageRoutingModule } from './tab1-routing.module';
 
 import {YouTubePlayerModule} from '@angular/youtube-player'; 
 
+import { PlyrModule } from 'ngx-plyr';
+
 
 @NgModule({
   imports: [
@@ -18,6 +20,7 @@ import {YouTubePlayerModule} from '@angular/youtube-player';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
     YouTubePlayerModule,
+    PlyrModule
   ],
   declarations: [Tab1Page]
 })
