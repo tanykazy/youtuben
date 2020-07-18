@@ -1,10 +1,7 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
-import {YouTubePlayer} from '@angular/youtube-player';
+import {Component, ViewChild } from '@angular/core';
+import { NavController } from '@ionic/angular';
 
 import {captions} from '../utils/getYoutubeCaptionEnglish'
-
-
-import { NavController } from '@ionic/angular';
 import { PlyrComponent } from 'ngx-plyr';
 
 @Component({
@@ -15,71 +12,38 @@ import { PlyrComponent } from 'ngx-plyr';
 
 export class Tab1Page {
 
-  @ViewChild(PlyrComponent)
-  plyr: PlyrComponent;
- 
+  // プロパティ一覧
+  title = "Practice"
+  videoId: string = "p13eKmDz88g";
+  captions = "";
+  captionFlag = true;
   videoSources: Plyr.Source[] = [
     {
       src: 'p13eKmDz88g',
       provider: 'youtube',
     },
   ];
+
+  @ViewChild(PlyrComponent) plyr: PlyrComponent;
   
   played(event: Plyr.PlyrEvent) {
     console.log('played', event);
   }
   
   play(): void {
-    //this.player.play(); // or this.plyr.player.play()
     this.plyr.player.play()
   }  
-
-
-  title = "Practice"
-  videoId: string = "p13eKmDz88g";
-
-  captions = "";
-
-  pointA = 0;
-  pointB = 0;
-
-  captionFlag = true;
-
-  public items: Array<any>;
  
-  @ViewChild(YouTubePlayer) youtubePlayer: YouTubePlayer;
-
   clickPlay() {
-  //  this.youtubePlayer.playVideo();
     this.plyr.player.play()
   }
-
-  clickPause() {
-    this.youtubePlayer.pauseVideo();
-  }
-
-  clickStop() {    
-    this.youtubePlayer.stopVideo();
-  }
-
-  setA() {
-    console.log("A is clicked");
-    this.pointA = this.youtubePlayer.getCurrentTime();
-    console.log(this.pointA);
-  }
-
-  backToA() {
-    console.log("B is clicked");
-    this.pointB = this.youtubePlayer.getCurrentTime();
-    this.youtubePlayer.seekTo(this.pointA, true);
-  }
-
 
 　// 指定の時間に移動する　
   moveToTime(time){
-    var seconds = Number(time.split(":")[0]*60) + Number(time.split(":")[1])
-    this.youtubePlayer.seekTo(seconds, true);
-    this.youtubePlayer.playVideo();
+    var seconds = Number(time.split(":")[0]*60) + Number(time.split(":")[1]) + Number(0.100000000000111)
+    this.plyr.player.currentTime = 0;
+    this.plyr.player.currentTime = seconds;
+    this.plyr.player.play();
   }
 
   changeCaption(){
@@ -96,37 +60,14 @@ export class Tab1Page {
     return this.captionFlag;
   }
 
-  freeMarker() {
-    this.pointA = 0;
-  }
-
   getsSpeed100(){
-//    this.youtubePlayer.setPlaybackRate(1);
     this.plyr.player.speed = 1;
     this.plyr.player.play();
   }
 
   getsSpeed50(){
-//    this.youtubePlayer.setPlaybackRate(0.5);
     this.plyr.player.play();
     this.plyr.player.speed = 0.5;
-    console.log(this.plyr.player.speed);
-  }
-
-  getsSpeed25(){
-    this.youtubePlayer.setPlaybackRate(0.25);
-  }
-
-  back2Sec() {
-    this.youtubePlayer.seekTo(this.youtubePlayer.getCurrentTime() - 2, true);
-  }
-
-  back3Sec() {
-    this.youtubePlayer.seekTo(this.youtubePlayer.getCurrentTime() - 3, true);
-  }
-
-  back5Sec() {
-    this.youtubePlayer.seekTo(this.youtubePlayer.getCurrentTime() - 5, true);
   }
 
   ngOnInit() {
@@ -139,23 +80,4 @@ export class Tab1Page {
     console.log(captions);
   }
 
-  data: Array<{title: string, showDetails: boolean}> = [];
-  constructor(public navCtrl: NavController) {
-  for(let i = 1; i < 4 ; i++ ){
-      this.data.push({
-        title: 'Video '+i,
-        showDetails: false
-      });
-    }
-  }
-
-  toggleDetails(data) {
-    if (data.showDetails) {
-      data.showDetails = false;
-      data.icon = 'add-outline';
-    } else {
-      data.showDetails = true;
-      data.icon = 'ios-remove-circle-outline';
-    }
-  }
 }
