@@ -7,10 +7,9 @@ import { ExploreContainerComponentModule } from '../explore-container/explore-co
 
 import { Tab1PageRoutingModule } from './tab1-routing.module';
 
-import {YouTubePlayerModule} from '@angular/youtube-player'; 
+import { YouTubePlayerModule } from '@angular/youtube-player';
 
 import { PlyrModule } from 'ngx-plyr';
-
 
 @NgModule({
   imports: [
@@ -20,10 +19,10 @@ import { PlyrModule } from 'ngx-plyr';
     ExploreContainerComponentModule,
     Tab1PageRoutingModule,
     YouTubePlayerModule,
-    PlyrModule
+    PlyrModule,
   ],
-  declarations: [Tab1Page]
+  declarations: [Tab1Page],
 })
 export class Tab1PageModule {
-  title = "Practice";
+  title = 'Practice';
 }
