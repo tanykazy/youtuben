@@ -1,7 +1,6 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
-import { captions } from '../utils/getYoutubeCaptionEnglish';
 import { PlyrComponent } from 'ngx-plyr';
 import { GetCaptionService } from '../services/get-caption.service';
 
@@ -83,10 +82,5 @@ export class Tab1Page implements OnInit {
         videoId: this.videoId,
       }),
     ]);
-    // const tag = document.createElement('script');
-    // tag.src = 'https://www.youtube.com/iframe_api';
-    // document.body.appendChild(tag);
-    // this.captions = captions;
-    // console.log(captions);
   }
 }
