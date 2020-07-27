@@ -1,14 +1,16 @@
-import { Component, ElementRef } from '@angular/core';
-import { Chart, StockChart } from 'angular-highcharts';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { StockChart } from 'angular-highcharts';
+import { RecordCountService } from '../services/record-count.service'
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page {
+export class Tab3Page implements OnInit{
 
-  constructor(chartDom: ElementRef) {
+  constructor(chartDom: ElementRef,
+              private recordCountService:RecordCountService) {
     this._chartDom = chartDom.nativeElement;
   }
   private _chartDom: HTMLElement;
@@ -29,22 +31,9 @@ export class Tab3Page {
       {
         name: '',
         data: [
-          [1482935400000, 116.76],
-          [1483021800000, 10],
-          [1483108200000, 105.82],
-          [1483453800000, 116.15],
-          [1483540200000, 80.02],
-          [1483626600000, 116.61],
-          [1483713000000, 60.91],
-          [1483972200000, 118.99],
-          [1484058600000, 30.11],
-          [1484145000000, 20.75],
-          [1484231400000, 109.25],
-          [1484317800000, 119.04],
-          [1484663400000, 120],
-          [1484749800000, 119.99],
-          [1484836200000, 20.78],
-          [1484922600000, 120],
+          [1592829007000, 120],
+          [1593829507000, 50],
+          [1594829507000, 100],
         ],
         type: 'areaspline',
         tooltip: {
@@ -53,6 +42,7 @@ export class Tab3Page {
       },
     ],
   });
+  
   getChartWidth() {
     console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
     this.clientWidth = this._chartDom.querySelectorAll(
@@ -60,18 +50,16 @@ export class Tab3Page {
     )[0].clientWidth;
   }
 
-  // add point to chart serie
-  add() {
-    this.chart.ref.addSeries({
-      data: [
-        [1485009000000, 100],
-        [1485095400000, 120],
-      ],
-      type: 'spline',
-      tooltip: {
-        valueDecimals: 2,
-      },
-    });
-    this.totalHours = 0;
+  addPoint(){  
+    this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
+//    this.chart.ref.series[0].setData([1595839507000, 100])
   }
+
+  ngOnInit(){
+    this.recordCountService.getToday();
+    this.addPoint()
+
+  }
+
+
 }

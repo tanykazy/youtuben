@@ -4,6 +4,8 @@ import { NavController } from '@ionic/angular';
 import { PlyrComponent } from 'ngx-plyr';
 import { GetCaptionService } from '../services/get-caption.service';
 
+//import { RecordCountService } from '../services/record-count.service'
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -13,12 +15,17 @@ export class Tab1Page implements OnInit {
   constructor(private getCaptionService: GetCaptionService) {}
   // プロパティ一覧
   title = 'Practice';
-  videoId = 'p13eKmDz88g';
+
+  videoBank = ['eIho2S0ZahI', 'R1vskiVDwl4', 'F6ehyV7kqv8', 
+               'O_9TgmIg1nA', 'aH--sKPgbSE', 'A3Yj3q0QRLM'];
+
+  videoId = this.videoBank[ Math.floor( Math.random() * this.videoBank.length)];
+
   captions = [];
   captionFlag = true;
   videoSources: Plyr.Source[] = [
     {
-      src: 'p13eKmDz88g',
+      src: this.videoId,
       provider: 'youtube',
     },
   ];
