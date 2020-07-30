@@ -37,7 +37,7 @@ $ ionic serve
 ## Development
 
 ```
-$ ng run app:build:production --base-href "https://geg-nara.github.io/youtuben/"
+$ ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
 $ angular-cli-ghpages --dir=www
 ```
 
