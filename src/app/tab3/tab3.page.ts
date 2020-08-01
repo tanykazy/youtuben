@@ -56,7 +56,7 @@ export class Tab3Page implements OnInit{
   }
 
   ngOnInit(){
-    this.recordCountService.getToday();
+    // this.recordCountService.getToday();
     this.addPoint()
 
   }
