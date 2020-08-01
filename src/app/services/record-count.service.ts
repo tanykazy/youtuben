@@ -16,7 +16,6 @@ export class RecordCountService {
 
   /**
    * AB再生を行った回数の記録
-   * JSON フォーマット
    */
   private playRecord: PlayRecord;
 
