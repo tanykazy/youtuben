@@ -30,13 +30,13 @@
 
       <div *ngIf='captionFlag; else Statement'>
         <ul *ngFor="let caption of captions[0]">
-          <li (click)="moveToTime(caption[0])">{{caption[1]}}</li>
+          <li (click)="clickCaption(caption[0])">{{caption[1]}}</li>
         </ul>
       </div>
 
       <ng-template #Statement>
         <ul *ngFor="let caption of captions[1]">
-          <li (click)="moveToTime(caption[0])">{{caption[1]}}</li>
+          <li (click)="clickCaption(caption[0])">{{caption[1]}}</li>
         </ul>
       </ng-template>
 _

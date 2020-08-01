@@ -4,7 +4,7 @@ import { NavController } from '@ionic/angular';
 import { PlyrComponent } from 'ngx-plyr';
 import { GetCaptionService } from '../services/get-caption.service';
 
-//import { RecordCountService } from '../services/record-count.service'
+import { RecordCountService } from '../services/record-count.service';
 
 @Component({
   selector: 'app-tab1',
@@ -12,7 +12,10 @@ import { GetCaptionService } from '../services/get-caption.service';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
-  constructor(private getCaptionService: GetCaptionService) {}
+  constructor(
+    private getCaptionService: GetCaptionService,
+    private recordCountService: RecordCountService) {
+    }
   // プロパティ一覧
   title = 'Practice';
 
@@ -44,11 +47,17 @@ export class Tab1Page implements OnInit {
     this.plyr.player.play();
   } // 指定の時間に移動する
 
-  moveToTime(time) {
+  clickCaption(event) {
     const seconds =
-      Number(time.split(':')[0] * 60) +
-      Number(time.split(':')[1]) +
+      Number(event.split(':')[0] * 60) +
+      Number(event.split(':')[1]) +
       Number(0.100000000000111);
+    this.moveToTime(seconds);
+    this.recordCountService.addCount();
+    this.recordCountService.saveRecord();
+  }
+
+  moveToTime(seconds) {
     this.plyr.player.currentTime = 0;
     this.plyr.player.currentTime = seconds;
     this.plyr.player.play();
@@ -79,6 +88,7 @@ export class Tab1Page implements OnInit {
   }
 
   async ngOnInit() {
+    this.recordCountService.loadRecord();
     this.captions = await Promise.all([
       this.getCaptionService.loadYoutubeSubTitlesAsync({
         languageId: 'en',
