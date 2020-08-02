@@ -95,7 +95,7 @@ class PlayRecord {
    * @returns UTCミリ秒
    */
   static toDateTime(date: Date): number {
-    return Date.UTC(date.getFullYear(), date.getMonth()+1, date.getDate());
+    return Date.UTC(date.getFullYear(), date.getMonth(), date.getDate());
   }
 
   /**
@@ -109,7 +109,7 @@ class PlayRecord {
   private toKeys(date: Date): any {
     return {
       y: date.getFullYear(),
-      m: date.getMonth()+1,
+      m: date.getMonth(),
       d: date.getDate()
     };
   }
