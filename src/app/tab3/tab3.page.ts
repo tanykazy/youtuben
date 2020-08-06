@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { StockChart } from 'angular-highcharts';
-import { RecordCountService } from '../services/record-count.service'
+import { RecordCountService, PlayCount } from '../services/record-count.service'
 
 @Component({
   selector: 'app-tab3',
@@ -9,56 +9,46 @@ import { RecordCountService } from '../services/record-count.service'
 })
 export class Tab3Page implements OnInit{
 
-  constructor(chartDom: ElementRef,
-              private recordCountService:RecordCountService) {
-    this._chartDom = chartDom.nativeElement;
+  constructor(
+    private recordCountService: RecordCountService) {
   }
-  private _chartDom: HTMLElement;
 
-  clientWidth: number;
+  private stockChart: StockChart;
 
-  totalHours = 1;
+  private createSeriesData() {
+    this.recordCountService.loadRecord();
+    const records:Array<PlayCount> = this.recordCountService.getAllRecord();
+    const result = [];
+    for (const record of records) {
+      result.push([record.time, record.count]);
+    }
+    return result;
+  }
 
-  chart = new StockChart({
-    rangeSelector: {
-      selected: 1,
-    },
-
-    title: {
-      text: '',
-    },
-    series: [
-      {
-        name: '',
-        data: [
-          [1592829007000, 120],
-          [1593829507000, 50],
-          [1594829507000, 100],
-        ],
-        type: 'areaspline',
-        tooltip: {
-          valueDecimals: 2,
-        },
-      },
-    ],
-  });
-  
   getChartWidth() {
-    console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
-    this.clientWidth = this._chartDom.querySelectorAll(
-      '#timeChart'
-    )[0].clientWidth;
+    //   console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
+    //   this.clientWidth = this._chartDom.querySelectorAll(
+    //     '#timeChart'
+    //   )[0].clientWidth;
   }
 
-  addPoint(){  
-    this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
-//    this.chart.ref.series[0].setData([1595839507000, 100])
+  addPoint() {
+    // this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
+    //    this.chart.ref.series[0].setData([1595839507000, 100])
   }
 
-  ngOnInit(){
-    // this.recordCountService.getToday();
-    this.addPoint()
-
+  ngOnInit() {
+    this.stockChart = new StockChart({
+      rangeSelector: {
+        selected: 1
+      },
+      series: [
+        {
+          type: 'area',
+          data: this.createSeriesData(),
+        }
+      ]
+    });
   }
 
 

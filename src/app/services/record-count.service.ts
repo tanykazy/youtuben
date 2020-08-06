@@ -182,7 +182,7 @@ class PlayRecord {
  * 再生回数と時間
  * グラフ描画用に時間を保持する
  */
-interface PlayCount {
+export interface PlayCount {
   time: number;
   count: number;
 }
