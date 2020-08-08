@@ -1,65 +1,51 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { StockChart } from 'angular-highcharts';
-import { RecordCountService } from '../services/record-count.service'
+import { RecordCountService, PlayCount } from '../services/record-count.service';
+import { GoogleChartInterface } from 'ng2-google-charts';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page implements OnInit{
+export class Tab3Page implements OnInit {
 
-  constructor(chartDom: ElementRef,
-              private recordCountService:RecordCountService) {
-    this._chartDom = chartDom.nativeElement;
+  constructor(
+    private recordCountService: RecordCountService) {
   }
-  private _chartDom: HTMLElement;
 
-  clientWidth: number;
+  public pieChart: GoogleChartInterface;
 
-  totalHours = 1;
+  private createSeriesData() {
+    this.recordCountService.loadRecord();
+    const records: Array<PlayCount> = this.recordCountService.getAllRecord();
+    const result = [];
+    result.push(['time', 'count']);
+    for (const record of records) {
+      const date = new Date(record.t);
+      result.push([
+        [date.getMonth() + 1, '/', date.getDate()].join(''),
+        record.c
+      ]);
+    }
+    return result;
+  }
 
-  chart = new StockChart({
-    rangeSelector: {
-      selected: 1,
-    },
-
-    title: {
-      text: '',
-    },
-    series: [
-      {
-        name: '',
-        data: [
-          [1592829007000, 120],
-          [1593829507000, 50],
-          [1594829507000, 100],
-        ],
-        type: 'areaspline',
-        tooltip: {
-          valueDecimals: 2,
-        },
-      },
-    ],
-  });
-  
   getChartWidth() {
-    console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
-    this.clientWidth = this._chartDom.querySelectorAll(
-      '#timeChart'
-    )[0].clientWidth;
+    //   console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
+    //   this.clientWidth = this._chartDom.querySelectorAll(
+    //     '#timeChart'
+    //   )[0].clientWidth;
   }
 
-  addPoint(){  
-    this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
-//    this.chart.ref.series[0].setData([1595839507000, 100])
+  addPoint() {
+    // this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
+    //    this.chart.ref.series[0].setData([1595839507000, 100])
   }
 
-  ngOnInit(){
-    // this.recordCountService.getToday();
-    this.addPoint()
-
+  ngOnInit() {
+    this.pieChart = {
+      chartType: 'AreaChart',
+      dataTable: this.createSeriesData(),
+    };
   }
-
-
 }
