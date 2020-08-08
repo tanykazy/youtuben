@@ -11,9 +11,6 @@ import { AppComponent } from './app.component';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
 
-import * as highstock from 'highcharts/modules/stock.src';
-import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
-
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -22,13 +19,11 @@ import { ChartModule, HIGHCHARTS_MODULES } from 'angular-highcharts';
     IonicModule.forRoot(),
     AppRoutingModule,
     YouTubePlayerModule,
-    ChartModule, // add ChartModule to your imports
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    { provide: HIGHCHARTS_MODULES, useFactory: () => [highstock] },
   ],
   bootstrap: [AppComponent],
 })

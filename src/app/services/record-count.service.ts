@@ -28,11 +28,11 @@ export class RecordCountService {
     let record = this.playRecord.getRecord(date);
     if (record === null) {
       record = {
-        time: PlayRecord.toDateTime(date),
-        count: 1
+        t: PlayRecord.toDateTime(date),
+        c: 1
       };
     } else {
-      record.count += 1;
+      record.c += 1;
     }
     this.playRecord.setRecord(record, date);
   }
@@ -42,7 +42,8 @@ export class RecordCountService {
    * リピート再生数のエントリを配列で返す
    */
   getAllRecord() {
-    return this.playRecord.getAllRecord();
+    const records = this.playRecord.getAllRecord();
+    return records;
   }
 
   /**
@@ -128,10 +129,7 @@ class PlayRecord {
       this.rec[keys.y][keys.m] = {};
     }
     if (!this.rec[keys.y][keys.m][keys.d]) {
-      this.rec[keys.y][keys.m][keys.d] = {
-        time: 0,
-        count: 0
-      };
+      this.rec[keys.y][keys.m][keys.d] = {};
     }
     Object.assign(this.rec[keys.y][keys.m][keys.d], val);
   }
@@ -179,10 +177,9 @@ class PlayRecord {
 }
 
 /**
- * 再生回数と時間
- * グラフ描画用に時間を保持する
+ * 再生回数
  */
 export interface PlayCount {
-  time: number;
-  count: number;
+  t: number;
+  c: number;
 }

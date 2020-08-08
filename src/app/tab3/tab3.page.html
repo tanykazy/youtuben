@@ -3,14 +3,9 @@
 
 <ion-content [fullscreen]="true">
 
-  <div class="centering_parent" >
-    <div id="timeChart" 
-      [chart]="stockChart"
-      >
-    </div>
-    <br/>
-    <ion-button (click)="addPoint()">Record</ion-button>
-    <ion-label>{{clientWidth}}</ion-label>
+  <div class="centering_parent">
+    <google-chart id="timeChart" [data]="pieChart">
+    </google-chart>
 
   </div>
 

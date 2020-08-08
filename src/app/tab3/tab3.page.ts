@@ -1,26 +1,31 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
-import { StockChart } from 'angular-highcharts';
-import { RecordCountService, PlayCount } from '../services/record-count.service'
+import { RecordCountService, PlayCount } from '../services/record-count.service';
+import { GoogleChartInterface } from 'ng2-google-charts';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page implements OnInit{
+export class Tab3Page implements OnInit {
 
   constructor(
     private recordCountService: RecordCountService) {
   }
 
-  private stockChart: StockChart;
+  public pieChart: GoogleChartInterface;
 
   private createSeriesData() {
     this.recordCountService.loadRecord();
-    const records:Array<PlayCount> = this.recordCountService.getAllRecord();
+    const records: Array<PlayCount> = this.recordCountService.getAllRecord();
     const result = [];
+    result.push(['time', 'count']);
     for (const record of records) {
-      result.push([record.time, record.count]);
+      const date = new Date(record.t);
+      result.push([
+        [date.getMonth() + 1, '/', date.getDate()].join(''),
+        record.c
+      ]);
     }
     return result;
   }
@@ -38,18 +43,9 @@ export class Tab3Page implements OnInit{
   }
 
   ngOnInit() {
-    this.stockChart = new StockChart({
-      rangeSelector: {
-        selected: 1
-      },
-      series: [
-        {
-          type: 'area',
-          data: this.createSeriesData(),
-        }
-      ]
-    });
+    this.pieChart = {
+      chartType: 'AreaChart',
+      dataTable: this.createSeriesData(),
+    };
   }
-
-
 }
