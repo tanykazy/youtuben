@@ -27,6 +27,7 @@
     "angular-cli-ghpages": "^0.6.2",
     "angular-highcharts": "^9.0.11",
     "highcharts": "^8.1.2",
+    "ng2-google-charts": "^6.1.0",
     "ngx-plyr": "^4.0.0",
     "plyr": "^3.6.2",
     "rxjs": "~6.5.1",
