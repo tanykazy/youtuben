@@ -42,6 +42,7 @@ export class RecordCountService {
    * リピート再生数のエントリを配列で返す
    */
   getAllRecord() {
+    // 単純な構造で履歴を保存するほうがいいかもしれない
     const records = this.playRecord.getAllRecord();
     return records;
   }
