@@ -13,13 +13,12 @@ export class Tab3Page implements OnInit {
     private recordCountService: RecordCountService) {
   }
 
-  public chart: GoogleChartInterface;
+  public pieChart: GoogleChartInterface;
 
   private createSeriesData() {
     this.recordCountService.loadRecord();
-    const records: Array<PlayCount> = this.recordCountService.getAllRecord();
+    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
     const result = [];
-    result.push(['time', 'count']);
     for (const record of records) {
       const date = new Date(record.t);
       result.push([
@@ -43,9 +42,10 @@ export class Tab3Page implements OnInit {
   }
 
   ngOnInit() {
-    this.chart = {
+    this.pieChart = {
       chartType: 'AreaChart',
       dataTable: this.createSeriesData(),
+      firstRowIsData: true,
     };
   }
 }

@@ -40,11 +40,12 @@ export class RecordCountService {
   /**
    * グラフ表示用を想定
    * リピート再生数のエントリを配列で返す
+   * 半年分
    */
-  getAllRecord() {
+  getHalfYearRecord(): Array<PlayCount> {
     // 単純な構造で履歴を保存するほうがいいかもしれない
     const records = this.playRecord.getAllRecord();
-    return records;
+    return records.slice(-Math.floor(365 / 2));
   }
 
   /**
@@ -77,6 +78,16 @@ class PlayRecord {
 
   constructor(rec: object = {}) {
     this.rec = rec;
+    const days: Array<Date> = this.create6monthDate();
+    for (const d of days) {
+      const pc: PlayCount = this.getRecord(d);
+      if (pc === null) {
+        this.setRecord({
+          t: PlayRecord.toDateTime(d),
+          c: 0
+        }, d);
+      }
+    }
   }
 
   /**
@@ -114,6 +125,18 @@ class PlayRecord {
       m: date.getMonth(),
       d: date.getDate()
     };
+  }
+
+  private create6monthDate(): Array<Date> {
+    const dateArray = new Array();
+    const stopDate = new Date();
+    const currentDate = new Date();
+    currentDate.setMonth(stopDate.getMonth() - 6);
+    while (currentDate <= stopDate) {
+      dateArray.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dateArray;
   }
 
   /**
