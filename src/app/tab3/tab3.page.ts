@@ -13,7 +13,7 @@ export class Tab3Page implements OnInit {
     private recordCountService: RecordCountService) {
   }
 
-  public pieChart: GoogleChartInterface;
+  public chart: GoogleChartInterface;
 
   private createSeriesData() {
     this.recordCountService.loadRecord();
@@ -42,7 +42,7 @@ export class Tab3Page implements OnInit {
   }
 
   ngOnInit() {
-    this.pieChart = {
+    this.chart = {
       chartType: 'AreaChart',
       dataTable: this.createSeriesData(),
       firstRowIsData: true,
