@@ -16,13 +16,13 @@ export class Tab3Page implements OnInit{
   private stockChart: StockChart;
 
   private createSeriesData() {
-    this.recordCountService.loadRecord();
-    const records:Array<PlayCount> = this.recordCountService.getAllRecord();
-    const result = [];
-    for (const record of records) {
-      result.push([record.time, record.count]);
-    }
-    return result;
+    // this.recordCountService.loadRecord();
+    // const records:Array<PlayCount> = this.recordCountService.getAllRecord();
+    // const result = [];
+    // for (const record of records) {
+    //   result.push([record.time, record.count]);
+    // }
+    // return result;
   }
 
   getChartWidth() {
@@ -38,17 +38,17 @@ export class Tab3Page implements OnInit{
   }
 
   ngOnInit() {
-    this.stockChart = new StockChart({
-      rangeSelector: {
-        selected: 1
-      },
-      series: [
-        {
-          type: 'area',
-          data: this.createSeriesData(),
-        }
-      ]
-    });
+    // this.stockChart = new StockChart({
+    //   rangeSelector: {
+    //     selected: 1
+    //   },
+    //   series: [
+    //     {
+    //       type: 'area',
+    //       data: this.createSeriesData(),
+    //     }
+    //   ]
+    // });
   }
 
 

@@ -207,3 +207,32 @@ export interface PlayCount {
   t: number;
   c: number;
 }
+
+class DateRecords {
+  constructor() { }
+  private records: object;
+  public setRecord() { }
+  // データの存在チェックを入れる
+  public getRecord(year?: number, month?: number, day?: number): object | null {
+    if ((typeof year !== 'number')
+      && (typeof month !== 'number')
+      && (typeof day !== 'number')) {
+      return this.records;
+    }
+    if ((typeof year === 'number')
+      && (typeof month !== 'number')
+      && (typeof day !== 'number')) {
+      return this.records[year];
+    }
+    if ((typeof year === 'number')
+      && (typeof month === 'number')
+      && (typeof day !== 'number')) {
+      return this.records[year][month];
+    }
+    if ((typeof year === 'number')
+      && (typeof month === 'number')
+      && (typeof day === 'number')) {
+      return this.records[year][month][day];
+    }
+  }
+}
