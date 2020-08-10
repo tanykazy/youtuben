@@ -29,6 +29,14 @@ export class Tab3Page implements OnInit {
     return result;
   }
 
+  private drawChart() {
+    this.chart = {
+      chartType: 'AreaChart',
+      dataTable: this.createSeriesData(),
+      firstRowIsData: true,
+    };
+  }
+
   getChartWidth() {
     //   console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
     //   this.clientWidth = this._chartDom.querySelectorAll(
@@ -42,10 +50,12 @@ export class Tab3Page implements OnInit {
   }
 
   ngOnInit() {
-    this.chart = {
-      chartType: 'AreaChart',
-      dataTable: this.createSeriesData(),
-      firstRowIsData: true,
-    };
+    console.log('ngOnInit!');
+    this.drawChart();
+  }
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter!');
+    this.drawChart();
   }
 }
