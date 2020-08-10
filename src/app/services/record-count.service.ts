@@ -28,11 +28,11 @@ export class RecordCountService {
     let record = this.playRecord.getRecord(date);
     if (record === null) {
       record = {
-        time: PlayRecord.toDateTime(date),
-        count: 1
+        t: PlayRecord.toDateTime(date),
+        c: 1
       };
     } else {
-      record.count += 1;
+      record.c += 1;
     }
     this.playRecord.setRecord(record, date);
   }
@@ -40,9 +40,12 @@ export class RecordCountService {
   /**
    * グラフ表示用を想定
    * リピート再生数のエントリを配列で返す
+   * 半年分
    */
-  getAllRecord() {
-    return this.playRecord.getAllRecord();
+  getHalfYearRecord(): Array<PlayCount> {
+    // 単純な構造で履歴を保存するほうがいいかもしれない
+    const records = this.playRecord.getAllRecord();
+    return records.slice(-Math.floor(365 / 2));
   }
 
   /**
@@ -75,6 +78,16 @@ class PlayRecord {
 
   constructor(rec: object = {}) {
     this.rec = rec;
+    const days: Array<Date> = this.create6monthDate();
+    for (const d of days) {
+      const pc: PlayCount = this.getRecord(d);
+      if (pc === null) {
+        this.setRecord({
+          t: PlayRecord.toDateTime(d),
+          c: 0
+        }, d);
+      }
+    }
   }
 
   /**
@@ -114,6 +127,18 @@ class PlayRecord {
     };
   }
 
+  private create6monthDate(): Array<Date> {
+    const dateArray = new Array();
+    const stopDate = new Date();
+    const currentDate = new Date();
+    currentDate.setMonth(stopDate.getMonth() - 6);
+    while (currentDate <= stopDate) {
+      dateArray.push(new Date(currentDate));
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+    return dateArray;
+  }
+
   /**
    * 内部変数へリピート数を記録する
    * @param val 
@@ -128,10 +153,7 @@ class PlayRecord {
       this.rec[keys.y][keys.m] = {};
     }
     if (!this.rec[keys.y][keys.m][keys.d]) {
-      this.rec[keys.y][keys.m][keys.d] = {
-        time: 0,
-        count: 0
-      };
+      this.rec[keys.y][keys.m][keys.d] = {};
     }
     Object.assign(this.rec[keys.y][keys.m][keys.d], val);
   }
@@ -179,10 +201,9 @@ class PlayRecord {
 }
 
 /**
- * 再生回数と時間
- * グラフ描画用に時間を保持する
+ * 再生回数
  */
 export interface PlayCount {
-  time: number;
-  count: number;
+  t: number;
+  c: number;
 }
