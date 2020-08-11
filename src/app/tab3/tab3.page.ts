@@ -17,9 +17,8 @@ export class Tab3Page implements OnInit {
 
   private createSeriesData() {
     this.recordCountService.loadRecord();
-    const records: Array<PlayCount> = this.recordCountService.getAllRecord();
+    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
     const result = [];
-    result.push(['time', 'count']);
     for (const record of records) {
       const date = new Date(record.t);
       result.push([
@@ -30,22 +29,34 @@ export class Tab3Page implements OnInit {
     return result;
   }
 
-  getChartWidth() {
-    //   console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
-    //   this.clientWidth = this._chartDom.querySelectorAll(
-    //     '#timeChart'
-    //   )[0].clientWidth;
-  }
-
-  addPoint() {
-    // this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
-    //    this.chart.ref.series[0].setData([1595839507000, 100])
-  }
-
-  ngOnInit() {
+  private drawChart() {
     this.chart = {
       chartType: 'AreaChart',
       dataTable: this.createSeriesData(),
+      firstRowIsData: true,
+      options: {
+        animation: {
+          duration: 1000,
+          easing: 'out',
+          startup: true,
+        },
+        vAxis: {
+          minValue: 0
+        }
+      }
     };
+  }
+
+  private changeData() {
+    this.chart.dataTable = this.createSeriesData();
+    this.chart.component.draw();
+  }
+
+  ngOnInit() {
+    this.drawChart();
+  }
+
+  ionViewDidEnter() {
+    this.changeData();
   }
 }
