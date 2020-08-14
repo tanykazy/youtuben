@@ -7,7 +7,7 @@ import { Tab3Page } from './tab3.page';
 
 import { Tab3PageRoutingModule } from './tab3-routing.module';
 
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { ComponentsModule } from '../components/components.module';
 
 @NgModule({
   imports: [
@@ -16,8 +16,10 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
     FormsModule,
     RouterModule.forChild([{ path: '', component: Tab3Page }]),
     Tab3PageRoutingModule,
-    Ng2GoogleChartsModule,
+    ComponentsModule,
   ],
-  declarations: [Tab3Page]
+  declarations: [
+    Tab3Page,
+  ]
 })
 export class Tab3PageModule { }

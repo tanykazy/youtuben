@@ -1,6 +1,5 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RecordCountService, PlayCount } from '../services/record-count.service';
-import { GoogleChartInterface } from 'ng2-google-charts';
 
 @Component({
   selector: 'app-tab3',
@@ -13,11 +12,9 @@ export class Tab3Page implements OnInit {
     private recordCountService: RecordCountService) {
   }
 
-  public chart: GoogleChartInterface;
+  private dataTable: Array<any>;
 
-  private createSeriesData() {
-    this.recordCountService.loadRecord();
-    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
+  private createSeriesData(records: Array<PlayCount>): Array<any> {
     const result = [];
     for (const record of records) {
       const date = new Date(record.t);
@@ -29,34 +26,17 @@ export class Tab3Page implements OnInit {
     return result;
   }
 
-  private drawChart() {
-    this.chart = {
-      chartType: 'AreaChart',
-      dataTable: this.createSeriesData(),
-      firstRowIsData: true,
-      options: {
-        animation: {
-          duration: 1000,
-          easing: 'out',
-          startup: true,
-        },
-        vAxis: {
-          minValue: 0
-        }
-      }
-    };
-  }
-
-  private changeData() {
-    this.chart.dataTable = this.createSeriesData();
-    this.chart.component.draw();
+  private setData(): void {
+    this.recordCountService.loadRecord();
+    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
+    this.dataTable = this.createSeriesData(records);
   }
 
   ngOnInit() {
-    this.drawChart();
+    this.setData();
   }
 
   ionViewDidEnter() {
-    this.changeData();
+    this.setData();
   }
 }
