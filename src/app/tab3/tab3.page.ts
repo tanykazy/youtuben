@@ -12,7 +12,7 @@ export class Tab3Page implements OnInit {
     private recordCountService: RecordCountService) {
   }
 
-  private dataTable: Array<any>;
+  dataTable: Array<any>;
 
   private createSeriesData(records: Array<PlayCount>): Array<any> {
     const result = [];
