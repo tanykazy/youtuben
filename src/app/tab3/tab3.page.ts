@@ -1,65 +1,42 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
-import { StockChart } from 'angular-highcharts';
-import { RecordCountService } from '../services/record-count.service'
+import { Component, OnInit } from '@angular/core';
+import { RecordCountService, PlayCount } from '../services/record-count.service';
 
 @Component({
   selector: 'app-tab3',
   templateUrl: 'tab3.page.html',
   styleUrls: ['tab3.page.scss'],
 })
-export class Tab3Page implements OnInit{
+export class Tab3Page implements OnInit {
 
-  constructor(chartDom: ElementRef,
-              private recordCountService:RecordCountService) {
-    this._chartDom = chartDom.nativeElement;
-  }
-  private _chartDom: HTMLElement;
-
-  clientWidth: number;
-
-  totalHours = 1;
-
-  chart = new StockChart({
-    rangeSelector: {
-      selected: 1,
-    },
-
-    title: {
-      text: '',
-    },
-    series: [
-      {
-        name: '',
-        data: [
-          [1592829007000, 120],
-          [1593829507000, 50],
-          [1594829507000, 100],
-        ],
-        type: 'areaspline',
-        tooltip: {
-          valueDecimals: 2,
-        },
-      },
-    ],
-  });
-  
-  getChartWidth() {
-    console.log(this._chartDom.querySelectorAll('#timeChart')[0].clientWidth);
-    this.clientWidth = this._chartDom.querySelectorAll(
-      '#timeChart'
-    )[0].clientWidth;
+  constructor(
+    private recordCountService: RecordCountService) {
   }
 
-  addPoint(){  
-    this.chart.ref.series[0].addPoint([1595839507000, 50], true, true);
-//    this.chart.ref.series[0].setData([1595839507000, 100])
+  dataTable: Array<any>;
+
+  private createSeriesData(records: Array<PlayCount>): Array<any> {
+    const result = [];
+    for (const record of records) {
+      const date = new Date(record.t);
+      result.push([
+        [date.getMonth() + 1, '/', date.getDate()].join(''),
+        record.c
+      ]);
+    }
+    return result;
   }
 
-  ngOnInit(){
-    // this.recordCountService.getToday();
-    this.addPoint()
-
+  private setData(): void {
+    this.recordCountService.loadRecord();
+    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
+    this.dataTable = this.createSeriesData(records);
   }
 
+  ngOnInit() {
+    this.setData();
+  }
 
+  ionViewDidEnter() {
+    this.setData();
+  }
 }
