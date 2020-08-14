@@ -28,13 +28,13 @@ System:
    npm    : 6.14.2
 ```
 
-## Usage
+## Development
 
 ```
 $ ionic serve
 ```
 
-## Development
+## Production
 
 ```
 $ ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
