@@ -3,14 +3,10 @@
 
 <ion-content [fullscreen]="true">
 
-  <div class="centering_parent" >
-    <div id="timeChart" 
-      [chart]="chart"
-      >
-    </div>
-    <br/>
-    <ion-button (click)="addPoint()">Record</ion-button>
-    <ion-label>{{clientWidth}}</ion-label>
+  <div class="centering_parent">
+
+    <app-charts [dataTable]="dataTable">
+    </app-charts>
 
   </div>
 
