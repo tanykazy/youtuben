@@ -1,5 +1,5 @@
 .centering_parent {
-    padding: 20px;              /* 余白指定 */
+    padding: 0px 20px 20px 20px;              /* 余白指定 */
     text-align:  center;        /* 中央寄せ */
 }
 
@@ -11,3 +11,9 @@ ul{
     padding-right: 20px;
 }
 
+@media (min-width: 1000px) {
+    .playerWrapper{
+        width : calc(100% - 60%);
+        margin: auto;
+    }
+}

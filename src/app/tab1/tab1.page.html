@@ -7,14 +7,17 @@
     <ion-grid>
     <ion-row>
       <ion-col>
-        <plyr 
-        style="width: 640px;" 
-        plyrTitle="Video 1" 
-        [plyrPlaysInline]="true" 
-        [plyrSources]="videoSources" 
-        (plyrInit)="changeCaption();changeCaption();play()" 
-        (plyrPlay)="played($event)">
-        </plyr>
+        <div class="playerWrapper">
+          <plyr 
+          style="width: 640px;" 
+          plyrTitle="Video 1" 
+          [plyrPlaysInline]="true" 
+          [plyrSources]="videoSources" 
+          (plyrInit)="changeCaption();changeCaption();play()" 
+          (plyrPlay)="played($event)">
+          </plyr>
+        </div>
+
       </ion-col>
     </ion-row>
 

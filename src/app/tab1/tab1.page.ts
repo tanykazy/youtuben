@@ -37,6 +37,8 @@ export class Tab1Page implements OnInit {
 
   played(event: Plyr.PlyrEvent) {
     console.log('played', event);
+    console.log(this.plyr.player.hasAudio);
+    console.log(this.plyr.player.increaseVolume(1));
   }
 
   play() {
@@ -45,8 +47,8 @@ export class Tab1Page implements OnInit {
 
   clickPlay() {
     this.plyr.player.play();
-  } // 指定の時間に移動する
-
+  } 
+  
   clickCaption(event) {
     const seconds =
       Number(event.split(':')[0] * 60) +
@@ -98,6 +100,6 @@ export class Tab1Page implements OnInit {
         languageId: 'ja',
         videoId: this.videoId,
       }),
-    ]);
+    ]);    
   }
 }
