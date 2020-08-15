@@ -5,10 +5,23 @@
 
 ul{
     list-style: none;
+}
+
+
+.EnglishCaptions {
     font-size: 25px;
     font-weight: bolder;
     padding-left: 0;
     padding-right: 20px;
+    padding-top: 10px;
+}
+
+.JapaneseCaptions{
+    font-size: 18px;
+    font-weight: bolder;
+    padding-left: 0;
+    padding-right: 20px;
+    padding-top: 10px;
 }
 
 @media (min-width: 1000px) {
