@@ -1,13 +1,34 @@
 .centering_parent {
-    padding: 20px;              /* 余白指定 */
+    padding: 0px 20px 20px 20px;              /* 余白指定 */
     text-align:  center;        /* 中央寄せ */
 }
 
 ul{
     list-style: none;
+    margin-left: 0px;
+    padding-left: 0px;
+}
+
+
+.EnglishCaptions {
     font-size: 25px;
     font-weight: bolder;
     padding-left: 0;
     padding-right: 20px;
+    padding-top: 10px;
 }
 
+.JapaneseCaptions{
+    font-size: 20px;
+    font-weight: bolder;
+    padding-left: 0;
+    padding-right: 20px;
+    padding-top: 10px;
+}
+
+@media (min-width: 1000px) {
+    .playerWrapper{
+        width : calc(100% - 60%);
+        margin: auto;
+    }
+}

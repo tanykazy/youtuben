@@ -7,14 +7,17 @@
     <ion-grid>
     <ion-row>
       <ion-col>
-        <plyr 
-        style="width: 640px;" 
-        plyrTitle="Video 1" 
-        [plyrPlaysInline]="true" 
-        [plyrSources]="videoSources" 
-        (plyrInit)="changeCaption();changeCaption();play()" 
-        (plyrPlay)="played($event)">
-        </plyr>
+        <div class="playerWrapper">
+          <plyr 
+          style="width: 640px;" 
+          plyrTitle="Video 1" 
+          [plyrPlaysInline]="true" 
+          [plyrSources]="videoSources" 
+          (plyrInit)="changeCaption();changeCaption();play()" 
+          (plyrPlay)="played($event)">
+          </plyr>
+        </div>
+
       </ion-col>
     </ion-row>
 
@@ -29,14 +32,14 @@
     <div style="width:100%;height:600px;overflow:auto;">
 
       <div *ngIf='captionFlag; else Statement'>
-        <ul *ngFor="let caption of captions[0]">
-          <li (click)="clickCaption(caption[0])">{{caption[1]}}</li>
+        <ul>
+          <li class="EnglishCaptions" *ngFor="let caption of captions[0]" (click)="clickCaption(caption[0])">{{caption[1]}}</li>
         </ul>
       </div>
 
       <ng-template #Statement>
-        <ul *ngFor="let caption of captions[1]">
-          <li (click)="clickCaption(caption[0])">{{caption[1]}}</li>
+        <ul>
+          <li class="JapaneseCaptions" *ngFor="let caption of captions[1]" (click)="clickCaption(caption[0])">{{caption[1]}}</li>
         </ul>
       </ng-template>
 _
