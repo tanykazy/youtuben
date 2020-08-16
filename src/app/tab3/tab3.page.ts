@@ -16,6 +16,7 @@ export class Tab3Page implements OnInit {
 
   private createSeriesData(records: Array<PlayCount>): Array<any> {
     const result = [];
+    records = records.slice(-7);
     for (const record of records) {
       const date = new Date(record.t);
       result.push([

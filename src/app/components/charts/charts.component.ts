@@ -31,10 +31,11 @@ export class ChartsComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.chart = {
-      chartType: 'AreaChart',
+      chartType: 'BarChart',
       dataTable: this.dataTable,
       firstRowIsData: true,
       options: {
+        reverseCategories: true,
         animation: {
           duration: 1000,
           easing: 'out',
@@ -42,6 +43,12 @@ export class ChartsComponent implements OnInit, OnChanges {
         },
         vAxis: {
           minValue: 0
+        },
+        hAxis: {
+          textPosition: 'none'
+        },
+        legend: {
+          position: 'none'
         }
       }
     };
