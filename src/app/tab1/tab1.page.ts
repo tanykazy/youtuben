@@ -53,7 +53,7 @@ export class Tab1Page implements OnInit {
     const seconds =
       Number(event.split(':')[0] * 60) +
       Number(event.split(':')[1]) +
-      Number(0.100000000000111);
+      Number(0.00000000111);
     this.moveToTime(seconds);
     this.recordCountService.addCount();
     this.recordCountService.saveRecord();
