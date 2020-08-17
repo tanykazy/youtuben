@@ -25,6 +25,8 @@ export class Tab1Page implements OnInit {
   videoId = this.videoBank[ Math.floor( Math.random() * this.videoBank.length)];
 
   captions = [];
+  currentCaptions: Array<any>;
+  captionIndex = 0;
   captionFlag = true;
   videoSources: Plyr.Source[] = [
     {
@@ -66,13 +68,9 @@ export class Tab1Page implements OnInit {
   }
 
   changeCaption() {
-    if (this.captionFlag === true) {
-      this.captionFlag = false;
-      console.log(this.captionFlag);
-    } else if (this.captionFlag === false) {
-      this.captionFlag = true;
-      console.log(this.captionFlag);
-    }
+    this.captionIndex = this.captionIndex + 1;
+    this.captionIndex = this.captionIndex % this.captions.length;
+    this.currentCaptions = this.captions[this.captionIndex];
   }
 
   checkCaptionFlag() {
@@ -100,6 +98,8 @@ export class Tab1Page implements OnInit {
         languageId: 'ja',
         videoId: this.videoId,
       }),
-    ]);    
+    ]);
+    this.captionIndex = 0;
+    this.currentCaptions = this.captions[this.captionIndex];
   }
 }
