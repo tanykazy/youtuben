@@ -29,6 +29,13 @@ export class ChartsComponent implements OnInit, OnChanges {
     this.isReady = true;
   }
 
+  private openAsPNG() {
+    if (this.isReady) {
+      const imageURI = this.chart.component.wrapper.getChart().getImageURI();
+      console.log(imageURI);
+    }
+  }
+
   ngOnInit() {
     this.chart = {
       chartType: 'BarChart',
@@ -41,15 +48,23 @@ export class ChartsComponent implements OnInit, OnChanges {
           easing: 'out',
           startup: true,
         },
-        vAxis: {
-          minValue: 0
-        },
-        hAxis: {
-          textPosition: 'none'
-        },
         legend: {
           position: 'none'
-        }
+        },
+        bar: {
+          groupWidth: '80%'
+        },
+        chartArea: {
+          height: '100%'
+        },
+        hAxis: {
+          textPosition: 'none',
+          viewWindowMode: 'maximized',
+          gridlines: {
+            count: 0
+          }
+        },
+        colors: ['#3880ff'],
       }
     };
   }
