@@ -1,2 +1,6 @@
-<google-chart [data]="chart" (chartReady)='ready($event)'>
-</google-chart>
+<ion-item lines="none">
+
+    <google-chart [data]="chart" (chartReady)="ready($event);">
+    </google-chart>
+
+</ion-item>

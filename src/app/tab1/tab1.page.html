@@ -1,6 +1,7 @@
 <ion-header>
 
-  <div class="centering_parent" >
+  <ion-grid class="ion-text-center">
+
     <ion-row>
       <ion-col>
         <div class="playerWrapper">
@@ -18,11 +19,31 @@
 
     <ion-row>
       <ion-col>
-        <ion-button (click)="getsSpeed100()">100%</ion-button>
-        <ion-button (click)="getsSpeed50()">50%</ion-button>
-        <ion-button (click)="changeCaption()">字幕切替</ion-button>
+        <ion-button expand="block" (click)="getsSpeed100()">100%</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="getsSpeed50()">50%</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button expand="block" (click)="changeCaption()">字幕切替</ion-button>
       </ion-col>
     </ion-row>
+<<<<<<< HEAD
+
+  </ion-grid>
+
+</ion-header>
+||||||| merged common ancestors
+  </div>
+
+  </ion-header>
+
+    <ion-content>  
+    <ion-grid>
+
+
+    <div style="width:100%;height:600px;overflow:auto;">
+=======
   </div>
 
   </ion-header>
@@ -30,15 +51,21 @@
     <ion-content>  
     <ion-grid>
     <div style="width:100%;height:500px;overflow:auto;">
+>>>>>>> upstream/master
 
-      <div *ngIf='captionFlag; else Statement'>
+<ion-content>
+
+<<<<<<< HEAD
+  <ion-virtual-scroll [items]="currentCaptions">
+||||||| merged common ancestors
+      <ng-template #Statement>
         <ion-list>
-          <ion-item *ngFor="let caption of captions[0]" (click)="clickCaption(caption[0])">
+          <ion-item *ngFor="let caption of captions[1]" (click)="clickCaption(caption[0])">
             <ion-label class="EnglishCaptions" >{{caption[1]}}</ion-label>
           </ion-item>
-      </ion-list>
-      </div>
-
+        </ion-list>
+      </ng-template>
+=======
       <ng-template #Statement>
         <ion-list>
           <ion-item *ngFor="let caption of captions[1]" (click)="clickCaption(caption[0])">
@@ -46,9 +73,14 @@
           </ion-item>
         </ion-list>
       </ng-template>
+>>>>>>> upstream/master
 
-    </div>
+    <ion-item *virtualItem="let currentCaption" (click)="clickCaption(currentCaption[0])">
+      <ion-label class="ion-text-center ion-text-wrap">
+        {{ currentCaption[1] }}
+      </ion-label>
+    </ion-item>
 
-  </ion-grid>
+  </ion-virtual-scroll>
 
 </ion-content>
