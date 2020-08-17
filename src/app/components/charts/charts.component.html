@@ -1,19 +1,6 @@
-<ion-card>
+<ion-item lines="none">
 
-    <ion-card-header>
+    <google-chart [data]="chart" (chartReady)="ready($event);">
+    </google-chart>
 
-        <ion-card-title>
-            Latest a week activity
-        </ion-card-title>
-
-        <ion-card-subtitle>
-        </ion-card-subtitle>
-
-    </ion-card-header>
-
-    <ion-card-content>
-        <google-chart [data]="chart" (chartReady)="ready($event);">
-        </google-chart>
-    </ion-card-content>
-
-</ion-card>
+</ion-item>

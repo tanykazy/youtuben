@@ -64,7 +64,7 @@ export class ChartsComponent implements OnInit, OnChanges {
             count: 0
           }
         },
-        colors: ['#3880ff'],
+        colors: ['#3880ff']
       }
     };
   }
