@@ -38,7 +38,7 @@
   <ion-virtual-scroll [items]="currentCaptions">
 
     <ion-item *virtualItem="let currentCaption" (click)="clickCaption(currentCaption[0])">
-      <ion-label class="ion-text-center ion-text-wrap">
+      <ion-label class="ion-text-center ion-text-wrap caption-font">
         {{ currentCaption[1] }}
       </ion-label>
     </ion-item>
