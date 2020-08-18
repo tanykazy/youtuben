@@ -42,4 +42,21 @@ ul{
         width : calc(100% - 60%);
         margin: auto;
     }
+
+    .buttons{
+        width: 40%;
+        margin: auto;
+    }
+    
+    .input-wrapper{
+        width: 60%;
+        list-style: none;
+        margin-left: 0px;
+        padding-left: 0px
+    }
+
+    .captions-wrapper{
+        width: 60%;
+        margin: auto;
+    }
 }

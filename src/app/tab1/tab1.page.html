@@ -17,32 +17,35 @@
       </ion-col>
     </ion-row>
 
-    <ion-row>
-      <ion-col>
-        <ion-button expand="block" (click)="getsSpeed100()">100%</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="block" (click)="getsSpeed50()">50%</ion-button>
-      </ion-col>
-      <ion-col>
-        <ion-button expand="block" (click)="changeCaption()">字幕切替</ion-button>
-      </ion-col>
-    </ion-row>
-
+    <div class="buttons centering_parent">
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="getsSpeed100()">100%</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="getsSpeed50()">50%</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="changeCaption()">字幕切替</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
   </ion-grid>
 
 </ion-header>
 
+
 <ion-content>
+  <div class="captions-wrapper">
+    <ion-virtual-scroll [items]="currentCaptions">
 
-  <ion-virtual-scroll [items]="currentCaptions">
+      <ion-item *virtualItem="let currentCaption" (click)="clickCaption(currentCaption[0])">
+        <ion-label class="ion-text-center ion-text-wrap caption-font">
+          {{ currentCaption[1] }}
+        </ion-label>
+      </ion-item>
 
-    <ion-item *virtualItem="let currentCaption" (click)="clickCaption(currentCaption[0])">
-      <ion-label class="ion-text-center ion-text-wrap caption-font">
-        {{ currentCaption[1] }}
-      </ion-label>
-    </ion-item>
-
-  </ion-virtual-scroll>
+    </ion-virtual-scroll>
+  </div>
 
 </ion-content>
