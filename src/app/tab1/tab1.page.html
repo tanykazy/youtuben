@@ -39,9 +39,11 @@
   <div class="captions-wrapper">
     <ion-virtual-scroll [items]="currentCaptions">
 
-      <ion-item *virtualItem="let currentCaption" (click)="clickCaption(currentCaption[0])">
+      <ion-item button *virtualItem="let caption" (click)="clickCaption(caption.start)">
+      <!-- <ion-item button *virtualItem="let caption" (click)="clickCaption(caption[0])"> -->
         <ion-label class="ion-text-center ion-text-wrap caption-font">
-          {{ currentCaption[1] }}
+          {{ caption.text }}
+          <!-- {{ caption[1] }} -->
         </ion-label>
       </ion-item>
 
