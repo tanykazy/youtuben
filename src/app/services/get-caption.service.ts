@@ -58,7 +58,7 @@ function xmlHttpRequest(method: string, url: string, options?: {
     xhr.open(
       method,
       url,
-      typeof options.async === 'undefined' ? true : options.async);
+      typeof options.async !== 'boolean' ? true : options.async);
     xhr.onload = () => {
       resolve(xhr.response);
     };

@@ -89,16 +89,6 @@ export class Tab1Page implements OnInit {
 
   ngOnInit() {
     this.recordCountService.loadRecord();
-    // this.captions = await Promise.all([
-    //   this.getCaptionService.loadYoutubeSubTitlesAsync({
-    //     languageId: 'en',
-    //     videoId: this.videoId,
-    //   }),
-    //   this.getCaptionService.loadYoutubeSubTitlesAsync({
-    //     languageId: 'ja',
-    //     videoId: this.videoId,
-    //   }),
-    // ]);
 
     const test = this.getCaptionService.loadYouTubeSubtitles([
       { videoid: this.videoId, languageid: 'en' },
@@ -111,56 +101,7 @@ export class Tab1Page implements OnInit {
 
     this.captionIndex = 0;
     this.currentCaptions = this.captions[this.captionIndex];
-
-    // const cap = {
-    //   en: this.getCaptionService.loadYoutubeSubTitlesAsync({
-    //     languageId: 'en',
-    //     videoId: this.videoId,
-    //   }),
-    //   ja: this.getCaptionService.loadYoutubeSubTitlesAsync({
-    //     languageId: 'ja',
-    //     videoId: this.videoId,
-    //   })
-    // };
-    // console.log(cap);
-
-    // console.log(this.captions);
-
-    // for (const caption of this.captions) {
-    //   for (const caps of caption) {
-    //     caps.start = timeString2seconds(caps.start);
-    //   }
-    // }
-    // const cap = [{
-    //   captions: this.captions[0],
-    //   lang: 'en'
-    // }, {
-    //   captions: this.captions[0],
-    //   lang: 'ja'
-    // }
-    // ];
-    // console.log(cap);
-
-    // this.captionIndex = 0;
-    // this.currentCaptions = this.captions[this.captionIndex];
-
-    // console.log(this.captions);
-    // this.captionInfo = new CaptionInfo(cap);
   }
-}
-
-function timeString2seconds(hhmmss: string): number {
-  const ssmmhh: Array<string> = hhmmss.split(':').reverse();
-  const base = 60;
-  let n = 0;
-  let result = 0;
-  result += parseInt(ssmmhh[n], 10);
-  n += 1;
-  while (n < ssmmhh.length) {
-    result += parseInt(ssmmhh[n], 10) * (base * n);
-    n += 1;
-  }
-  return result;
 }
 
 class CaptionInfo {
