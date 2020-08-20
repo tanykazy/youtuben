@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Input } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import { PlyrComponent } from 'ngx-plyr';
@@ -12,6 +12,7 @@ import { RecordCountService } from '../services/record-count.service';
   styleUrls: ['tab1.page.scss'],
 })
 export class Tab1Page implements OnInit {
+
   constructor(
     private getCaptionService: GetCaptionService,
     private recordCountService: RecordCountService) { }
@@ -24,7 +25,7 @@ export class Tab1Page implements OnInit {
 
   videoId = this.videoBank[Math.floor(Math.random() * this.videoBank.length)];
 
-  captionInfo: CaptionInfo;
+  captionInfo: CaptionInfo = new CaptionInfo();
   captions = [];
   // captions: any;
   currentCaptions: Array<Caption>;
@@ -36,6 +37,7 @@ export class Tab1Page implements OnInit {
       provider: 'youtube',
     },
   ];
+  // @Input()
 
   @ViewChild(PlyrComponent) plyr: PlyrComponent;
 
@@ -100,9 +102,15 @@ export class Tab1Page implements OnInit {
 
     const test = this.getCaptionService.loadYouTubeSubtitles([
       { videoid: this.videoId, languageid: 'en' },
-      { videoid: this.videoId, languageid: 'ja' }]);
-    console.log('-----------');
-    console.log(test);
+      { videoid: this.videoId, languageid: 'ja' }],
+      (result) => {
+        console.log(result);
+        this.captionInfo.setCaptions(result);
+        this.captions.push(result.captions);
+      });
+
+    this.captionIndex = 0;
+    this.currentCaptions = this.captions[this.captionIndex];
 
     // const cap = {
     //   en: this.getCaptionService.loadYoutubeSubTitlesAsync({
@@ -133,8 +141,8 @@ export class Tab1Page implements OnInit {
     // ];
     // console.log(cap);
 
-    this.captionIndex = 0;
-    this.currentCaptions = this.captions[this.captionIndex];
+    // this.captionIndex = 0;
+    // this.currentCaptions = this.captions[this.captionIndex];
 
     // console.log(this.captions);
     // this.captionInfo = new CaptionInfo(cap);
@@ -160,10 +168,21 @@ class CaptionInfo {
   private captionsIndex: number;
   public current: Captions;
 
-  constructor(captionsList: Array<Captions>) {
+  constructor() {
     this.captionsIndex = 0;
-    this.captionsList = Array.from(captionsList);
+    this.captionsList = [];
     this.current = this.captionsList[this.captionsIndex];
+  }
+
+  public setCaptions(captions: Captions) {
+    // const cap = this.getCaptionsByLang(captions.lang);
+    // if (!captions) {
+    //   this.captionsList.push(captions);
+    // } else {
+    //   cap.captions = captions.captions;
+    // }
+    this.captionsList.push(captions);
+    return captions;
   }
 
   public toggleLang(lang?: string): Captions {
@@ -173,13 +192,17 @@ class CaptionInfo {
       this.captionsIndex = this.captionsIndex % this.captionsList.length;
       captions = this.captionsList[this.captionsIndex];
     } else {
-      captions = this.captionsList.find(
-        (element: Captions) => element.lang === lang);
+      captions = this.getCaptionsByLang(lang);
       if (!captions) {
         throw new Error(`${lang} is not found in caption list.`);
       }
     }
     this.current = captions;
     return this.current;
+  }
+
+  private getCaptionsByLang(lang: string): Captions {
+    return this.captionsList.find(
+      (element: Captions) => element.lang === lang);
   }
 }

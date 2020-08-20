@@ -38,6 +38,7 @@
 <ion-content>
   <div class="captions-wrapper">
     <ion-virtual-scroll [items]="currentCaptions">
+    <!-- <ion-virtual-scroll [items]="captionInfo.current.captions"> -->
 
       <ion-item button *virtualItem="let caption" (click)="clickCaption(caption.start)">
       <!-- <ion-item button *virtualItem="let caption" (click)="clickCaption(caption[0])"> -->
