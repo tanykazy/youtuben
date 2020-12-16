@@ -35,8 +35,8 @@ $ ionic serve
 ## Build the app for production
 
 ```
-$ ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
-$ angular-cli-ghpages --dir=www
+$ npx ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
+$ npx angular-cli-ghpages --dir=www
 ```
 
 ## License
