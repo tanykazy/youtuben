@@ -1,18 +1,40 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Latest a week activity
+      学習履歴
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <div class="centering_parent">
-
-    <app-charts [dataTable]="dataTable">
-    </app-charts>
-
+  <div class="wrapper">
+    <ion-title>
+      最近の１週間
+    </ion-title>
+    <app-charts [dataTable]="dataTable"></app-charts>
   </div>
 
+  <br/>
+
+  <div class="wrapper">
+    <ion-title>
+      直近の１ヶ月
+    </ion-title>
+    <app-charts [dataTable]="dataTable"></app-charts>
+  </div>
+  <br/>
+
+  <div class="wrapper">
+    <ion-title>
+      直近の３ヶ月
+    </ion-title>
+    <app-charts [dataTable]="dataTable"></app-charts>
+  </div>
+
+
 </ion-content>
+
+
+
+
