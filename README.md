@@ -2,12 +2,13 @@
 
 Learn English with YouTube
 
-
 ## Developing Environment
 
-Install the dependencies using yarn:
+Download the src and install the dependencies using yarn:
 
 ```
+$ git clone git@github.com:gdg-nara/youtuben.git
+$ cd youtuben
 $ yarn
 ```
 
@@ -32,7 +33,7 @@ Ionic:
 $ ionic serve
 ```
 
-## Build the app for production
+## Build and Deploy the app
 
 ```
 $ npx ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
