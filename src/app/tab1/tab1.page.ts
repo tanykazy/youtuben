@@ -2,9 +2,11 @@ import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import { PlyrComponent } from 'ngx-plyr';
-import { GetCaptionService } from '../services/get-caption.service';
 
+// Service
+import { GetCaptionService } from '../services/get-caption.service';
 import { RecordCountService } from '../services/record-count.service';
+import { GetVideoIdsService } from '../services/get-video-ids.service';
 
 @Component({
   selector: 'app-tab1',
@@ -14,15 +16,17 @@ import { RecordCountService } from '../services/record-count.service';
 export class Tab1Page implements OnInit {
   constructor(
     private getCaptionService: GetCaptionService,
-    private recordCountService: RecordCountService) {
-    }
+    private recordCountService: RecordCountService,
+    private getVideoIdsService: GetVideoIdsService
+    )
+    {}
   // プロパティ一覧
   title = 'Practice';
 
   videoBank = ['eIho2S0ZahI', 'R1vskiVDwl4', 'F6ehyV7kqv8', 
                'O_9TgmIg1nA', 'aH--sKPgbSE', 'A3Yj3q0QRLM'];
 
-  videoId = this.videoBank[ Math.floor( Math.random() * this.videoBank.length)];
+  videoId = this.videoBank[Math.floor( Math.random() * this.videoBank.length)];
 
   captions = [];
   currentCaptions: Array<any>;
