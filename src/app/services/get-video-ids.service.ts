@@ -17,7 +17,7 @@ export class GetVideoIdsService {
     this.playlists = Object.entries(response);
 
     // 整形する
-    this.playlists = this.playlists.map(playlist => {var obj1 = {}; obj1["playlist"] = playlist[0]; obj1["isChecked"] = true;return obj1; })
+    this.playlists = this.playlists.map(playlist => {var obj1 = {}; obj1["val"] = playlist[0]; obj1["isChecked"] = true;return obj1; })
 
     })
   }

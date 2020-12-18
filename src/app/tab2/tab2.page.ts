@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
-// Service
+// Service 
 import { GetVideoIdsService } from '../services/get-video-ids.service'
 
 
@@ -13,7 +12,6 @@ import { GetVideoIdsService } from '../services/get-video-ids.service'
 export class Tab2Page {
 
   constructor(
-    private http: HttpClient,
     private getVideoIdsService: GetVideoIdsService
     ){}
 
