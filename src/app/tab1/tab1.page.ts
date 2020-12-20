@@ -19,14 +19,14 @@ export class Tab1Page implements OnInit {
     private recordCountService: RecordCountService,
     private getVideoIdsService: GetVideoIdsService
     )
-    {
+    {      
     }
   // プロパティ一覧
   title = 'Practice';
 
-  videoBank = ['p13eKmDz88g'];
-
-  videoId = this.videoBank[Math.floor( Math.random() * this.videoBank.length)];
+  videoBank;
+  videoIds = JSON.parse(localStorage.getItem('videoIds'));
+  videoId = this.videoIds[Math.floor( Math.random() * this.videoIds.length)];
 
   captions = [];
   currentCaptions: Array<any>;
@@ -109,9 +109,8 @@ export class Tab1Page implements OnInit {
   }
 
   ngAfterViewInit(){
-    // プレイリストを同期する
-    this.getVideoIdsService.getVideoIds();
-    console.log(this.getVideoIdsService.playlists);   
+    // プレイリストを同期する 
+    console.log(this.videoIds.length);
 
   }
 }

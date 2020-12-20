@@ -8,11 +8,18 @@ export class GetVideoIdsService {
 
   constructor(
     private http: HttpClient
-  ){}
+  ){
+    this.putFirstIds();
+    this.getVideoIds();
+  }
 
   playlists;
 
   videoIds;
+
+  putFirstIds(){
+    this.videoIds = ["cSohjlYQI2A"]
+  }
 
   getVideoIds(){
     this.http.get('https://script.google.com/macros/s/AKfycbxX_z1vk8vTUVCHnW5dX81xVKw8TCFIzEYoI-y6oKogjuSMiieD/exec?p=playlist').subscribe(response => {
