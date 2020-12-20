@@ -19,12 +19,12 @@ export class Tab1Page implements OnInit {
     private recordCountService: RecordCountService,
     private getVideoIdsService: GetVideoIdsService
     )
-    {}
+    {
+    }
   // プロパティ一覧
   title = 'Practice';
 
-  videoBank = ['eIho2S0ZahI', 'R1vskiVDwl4', 'F6ehyV7kqv8', 
-               'O_9TgmIg1nA', 'aH--sKPgbSE', 'A3Yj3q0QRLM'];
+  videoBank = ['p13eKmDz88g'];
 
   videoId = this.videoBank[Math.floor( Math.random() * this.videoBank.length)];
 
@@ -92,6 +92,7 @@ export class Tab1Page implements OnInit {
   }
 
   async ngOnInit() {
+
     this.recordCountService.loadRecord();
     this.captions = await Promise.all([
       this.getCaptionService.loadYoutubeSubTitlesAsync({
@@ -110,6 +111,7 @@ export class Tab1Page implements OnInit {
   ngAfterViewInit(){
     // プレイリストを同期する
     this.getVideoIdsService.getVideoIds();
-    console.log(this.getVideoIdsService.playlists);    
+    console.log(this.getVideoIdsService.playlists);   
+
   }
 }
