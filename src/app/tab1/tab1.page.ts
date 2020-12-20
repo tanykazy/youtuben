@@ -6,7 +6,6 @@ import { PlyrComponent } from 'ngx-plyr';
 // Service
 import { GetCaptionService } from '../services/get-caption.service';
 import { RecordCountService } from '../services/record-count.service';
-import { GetVideoIdsService } from '../services/get-video-ids.service';
 
 @Component({
   selector: 'app-tab1',
@@ -17,11 +16,8 @@ export class Tab1Page implements OnInit {
   constructor(
     private getCaptionService: GetCaptionService,
     private recordCountService: RecordCountService,
-    private getVideoIdsService: GetVideoIdsService
-    )
-    {      
-    }
-  // プロパティ一覧
+    ){}
+
   title = 'Practice';
 
   videoBank;
@@ -32,6 +28,7 @@ export class Tab1Page implements OnInit {
   currentCaptions: Array<any>;
   captionIndex = 0;
   captionFlag = true;
+
   videoSources: Plyr.Source[] = [
     {
       src: this.videoId,
@@ -92,7 +89,6 @@ export class Tab1Page implements OnInit {
   }
 
   async ngOnInit() {
-
     this.recordCountService.loadRecord();
     this.captions = await Promise.all([
       this.getCaptionService.loadYoutubeSubTitlesAsync({
@@ -106,11 +102,5 @@ export class Tab1Page implements OnInit {
     ]);
     this.captionIndex = 0;
     this.currentCaptions = this.captions[this.captionIndex];
-  }
-
-  ngAfterViewInit(){
-    // プレイリストを同期する 
-    console.log(this.videoIds.length);
-
   }
 }

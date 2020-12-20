@@ -26,6 +26,9 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      
+      // 初期化のタイミングでビデオidを更新する
+      this.getVideoIdsService.getVideoIds();
     });
   }
 }
