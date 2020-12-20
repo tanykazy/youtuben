@@ -106,4 +106,10 @@ export class Tab1Page implements OnInit {
     this.captionIndex = 0;
     this.currentCaptions = this.captions[this.captionIndex];
   }
+
+  ngAfterViewInit(){
+    // プレイリストを同期する
+    this.getVideoIdsService.getVideoIds();
+    console.log(this.getVideoIdsService.playlists);    
+  }
 }

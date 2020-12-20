@@ -11,7 +11,7 @@
 
 <ion-content padding>
   <div class="wrapper">
-
+    
   <ion-list>
     <ion-item *ngFor="let playlist of playlists">
       <ion-checkbox slot="start" [(ngModel)]="playlist.isChecked"></ion-checkbox>
@@ -21,7 +21,7 @@
 
   <ion-button (click)="getVideoIds()">Update Playlist</ion-button>
 
-  </div>
+</div>
 
 </ion-content>
 
