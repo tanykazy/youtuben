@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, Inject } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
 import { Router,NavigationEnd } from '@angular/router';
@@ -9,6 +9,7 @@ import { PlyrComponent } from 'ngx-plyr';
 import { GetCaptionService } from '../services/get-caption.service';
 import { RecordCountService } from '../services/record-count.service';
 
+import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-tab1',
@@ -20,8 +21,9 @@ export class Tab1Page implements OnInit {
     private getCaptionService: GetCaptionService,
     private recordCountService: RecordCountService,
     private router: Router,
+    @Inject(DOCUMENT) private document: Document
     ){
-      
+
     }
 
   title = 'Practice';
@@ -98,7 +100,11 @@ export class Tab1Page implements OnInit {
     this.plyr.player.speed = 0.5;
   }
 
-  async InitPracticePage(){
+  InitPracticePage(){
+    this.document.location.reload();
+  }
+
+  async ngOnInit() {
     this.recordCountService.loadRecord();
     this.captions = await Promise.all([
       this.getCaptionService.loadYoutubeSubTitlesAsync({
@@ -112,14 +118,5 @@ export class Tab1Page implements OnInit {
     ]);
     this.captionIndex = 0;
     this.currentCaptions = this.captions[this.captionIndex];
-
-    // restart
-    //this.plyr.player.restart();
-  }
-
-  
-
-  async ngOnInit() {
-    this.InitPracticePage();
   }
 }
