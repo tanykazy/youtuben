@@ -20,13 +20,16 @@
     <div class="buttons centering_parent">
       <ion-row>
         <ion-col>
-          <ion-button expand="block" (click)="getsSpeed100()">100%</ion-button>
+          <ion-button expand="block" (click)="getsSpeed100()">Normal Speed</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button expand="block" (click)="getsSpeed50()">50%</ion-button>
+          <ion-button expand="block" (click)="getsSpeed50()">Slow Speed</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button expand="block" (click)="changeCaption()">字幕切替</ion-button>
+          <ion-button expand="block" (click)="changeCaption()">Subtitles</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="InitPracticePage($event)">New video</ion-button>
         </ion-col>
       </ion-row>
     </div>

@@ -30,7 +30,7 @@ Ionic:
 ## Start the developing server
 
 ```
-$ ionic serve
+$ npx ionic serve
 ```
 
 ## Build and Deploy the app

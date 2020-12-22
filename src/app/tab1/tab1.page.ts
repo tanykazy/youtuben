@@ -1,11 +1,14 @@
 import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
+import { Router,NavigationEnd } from '@angular/router';
+
 import { PlyrComponent } from 'ngx-plyr';
 
 // Service
 import { GetCaptionService } from '../services/get-caption.service';
 import { RecordCountService } from '../services/record-count.service';
+
 
 @Component({
   selector: 'app-tab1',
@@ -16,7 +19,10 @@ export class Tab1Page implements OnInit {
   constructor(
     private getCaptionService: GetCaptionService,
     private recordCountService: RecordCountService,
-    ){}
+    private router: Router,
+    ){
+      
+    }
 
   title = 'Practice';
 
@@ -46,6 +52,10 @@ export class Tab1Page implements OnInit {
 
   play() {
     this.plyr.player.play();
+  }
+
+  loadNewMovie(event: Plyr.PlyrEvent){
+    console.log(this.plyr.player.source);
   }
 
   clickPlay() {
@@ -88,7 +98,7 @@ export class Tab1Page implements OnInit {
     this.plyr.player.speed = 0.5;
   }
 
-  async ngOnInit() {
+  async InitPracticePage(){
     this.recordCountService.loadRecord();
     this.captions = await Promise.all([
       this.getCaptionService.loadYoutubeSubTitlesAsync({
@@ -102,5 +112,14 @@ export class Tab1Page implements OnInit {
     ]);
     this.captionIndex = 0;
     this.currentCaptions = this.captions[this.captionIndex];
+
+    // restart
+    //this.plyr.player.restart();
+  }
+
+  
+
+  async ngOnInit() {
+    this.InitPracticePage();
   }
 }
