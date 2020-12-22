@@ -7,16 +7,14 @@ Learn English with YouTube
 Download the src and install the dependencies using yarn:
 
 ```
-$ git clone git@github.com:gdg-nara/youtuben.git
-$ cd youtuben
-$ yarn
+git clone git@github.com:gdg-nara/youtuben.git
+cd youtuben
+yarn
 ```
 
 Now you can start developing by the following environment:
 
 ```
-$ npx ionic info     
-
 Ionic:
 
    Ionic CLI                     : 5.4.16 (/.nvm/versions/node/v13.3.0/lib/node_modules/ionic)
@@ -30,14 +28,15 @@ Ionic:
 ## Start the developing server
 
 ```
-$ npx ionic serve
+npx ionic serve
 ```
 
 ## Build and Deploy the app
 
 ```
-$ npx ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
-$ npx angular-cli-ghpages --dir=www
+npx ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
+
+npx angular-cli-ghpages --dir=www
 ```
 
 ## License
