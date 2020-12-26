@@ -1,0 +1,49 @@
+<ion-header>
+
+  <ion-grid class="ion-text-center">
+
+    <ion-row>
+      <ion-col>
+        <div class="playerWrapper">
+          <plyr id="player" style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true"
+            [plyrSources]="videoSources" (plyrInit)="changeCaption();changeCaption();play()" (plyrPlay)="played($event)">
+          </plyr>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div class="buttons centering_parent">
+      <ion-row>
+        <ion-col>
+          <ion-button expand="block" (click)="getsSpeed100()">Normal Speed</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="getsSpeed50()">Slow Speed</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="changeCaption()">Subtitles</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="refreshVideo()">New video</ion-button>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="captions-wrapper">
+    <ion-virtual-scroll [items]="currentCaptions">
+
+      <ion-item *virtualItem="let currentCaption" (click)="clickCaption(currentCaption[0])">
+        <ion-label class="ion-text-center ion-text-wrap caption-font">
+          {{ currentCaption[1] }}
+        </ion-label>
+      </ion-item>
+
+    </ion-virtual-scroll>
+  </div>
+
+</ion-content>
