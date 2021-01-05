@@ -5,13 +5,8 @@
     <ion-row>
       <ion-col>
         <div class="playerWrapper">
-          <plyr 
-          style="width: 640px;" 
-          plyrTitle="Video 1" 
-          [plyrPlaysInline]="true" 
-          [plyrSources]="videoSources" 
-          (plyrInit)="changeCaption();changeCaption();play()" 
-          (plyrPlay)="played($event)">
+          <plyr id="player" style="width: 640px;" plyrTitle="Video 1" [plyrPlaysInline]="true"
+            [plyrSources]="videoSources" (plyrInit)="changeCaption();changeCaption();play()" (plyrPlay)="played($event)">
           </plyr>
         </div>
       </ion-col>
@@ -20,16 +15,16 @@
     <div class="buttons centering_parent">
       <ion-row>
         <ion-col>
-          <ion-button expand="block" (click)="InitPracticePage()">New video</ion-button>
+          <ion-button expand="block" (click)="getsSpeed100()">Normal Speed</ion-button>
+        </ion-col>
+        <ion-col>
+          <ion-button expand="block" (click)="getsSpeed50()">Slow Speed</ion-button>
         </ion-col>
         <ion-col>
           <ion-button expand="block" (click)="changeCaption()">Subtitles</ion-button>
         </ion-col>
         <ion-col>
-          <ion-button expand="block" (click)="getsSpeed100()">Normal Speed</ion-button>
-        </ion-col>
-        <ion-col>
-          <ion-button expand="block" (click)="getsSpeed50()">Slow Speed</ion-button>
+          <ion-button expand="block" (click)="refreshVideo()">New video</ion-button>
         </ion-col>
       </ion-row>
     </div>

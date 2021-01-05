@@ -1,15 +1,13 @@
-import { Component, ViewChild, OnInit, Inject } from '@angular/core';
+import { Component, ViewChild, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
 
-import { Router,NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 
-import { PlyrComponent } from 'ngx-plyr';
+import { DefaultPlyrDriver, PlyrComponent, PlyrDriverUpdateSourceParams } from 'ngx-plyr';
 
 // Service
 import { GetCaptionService } from '../services/get-caption.service';
 import { RecordCountService } from '../services/record-count.service';
-
-import { DOCUMENT } from '@angular/common';
 
 @Component({
   selector: 'app-tab1',
@@ -21,10 +19,10 @@ export class Tab1Page implements OnInit {
     private getCaptionService: GetCaptionService,
     private recordCountService: RecordCountService,
     private router: Router,
-    @Inject(DOCUMENT) private document: Document
-    ){
+    private plyrDriver: DefaultPlyrDriver
+  ) {
 
-    }
+  }
 
   title = 'Practice';
 
@@ -56,14 +54,14 @@ export class Tab1Page implements OnInit {
     this.plyr.player.play();
   }
 
-  loadNewMovie(event: Plyr.PlyrEvent){
+  loadNewMovie(event: Plyr.PlyrEvent) {
     console.log(this.plyr.player.source);
   }
 
   clickPlay() {
     this.plyr.player.play();
-  } 
-  
+  }
+
   clickCaption(event) {
     const seconds =
       Number(event.split(':')[0] * 60) +
@@ -100,11 +98,7 @@ export class Tab1Page implements OnInit {
     this.plyr.player.speed = 0.5;
   }
 
-  InitPracticePage(){
-    this.document.location.reload();
-  }
-
-  async ngOnInit() {
+  async InitPracticePage() {
     this.recordCountService.loadRecord();
     this.captions = await Promise.all([
       this.getCaptionService.loadYoutubeSubTitlesAsync({
@@ -118,5 +112,26 @@ export class Tab1Page implements OnInit {
     ]);
     this.captionIndex = 0;
     this.currentCaptions = this.captions[this.captionIndex];
+  }
+
+
+
+  async ngOnInit() {
+    this.InitPracticePage();
+  }
+
+  // This is new code
+
+  refreshVideo() {
+    this.videoSources = [];
+    this.videoId = this.videoIds[Math.floor(Math.random() * this.videoIds.length)];
+    this.videoSources.push({ src: this.videoId, provider: 'youtube' });
+    const updateParam: PlyrDriverUpdateSourceParams = {
+      plyr: this.plyr.player,
+      source: { type: 'video', sources: this.videoSources },
+      videoElement: document.getElementById('player') as HTMLVideoElement
+    }
+    this.plyrDriver.updateSource(updateParam);
+    this.InitPracticePage();
   }
 }

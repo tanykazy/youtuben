@@ -1,18 +1,39 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Latest a week activity
-    </ion-title>
-  </ion-toolbar>
+  <div class="wrapper">
+    <ion-toolbar>
+      <ion-title>
+        Learning Log
+      </ion-title>
+    </ion-toolbar>
+  </div>
 </ion-header>
 
 <ion-content [fullscreen]="true">
 
-  <div class="centering_parent">
-
-    <app-charts [dataTable]="dataTable">
-    </app-charts>
-
+  <div class="wrapper">
+    <ion-title>
+      Last 1 week
+    </ion-title>
+    <app-charts [dataTable]="dataTable"></app-charts>
   </div>
 
+  <div class="wrapper">
+    <ion-title>
+      Last 1 month
+    </ion-title>
+    <app-charts [dataTable]="dataTable"></app-charts>
+  </div>
+
+  <div class="wrapper">
+    <ion-title>
+      Last 3 months
+    </ion-title>
+    <app-charts [dataTable]="dataTable"></app-charts>
+  </div>
+
+
 </ion-content>
+
+
+
+

@@ -1,7 +1,7 @@
 {
   "name": "youtuben",
-  "version": "0.0.1",
-  "author": "Hiroki Noguchi, Kazuya Tanihara",
+  "version": "0.9",
+  "author": "GDG Nara",
   "description": "Learn English with YouTube",
   "homepage": "./",
   "scripts": {

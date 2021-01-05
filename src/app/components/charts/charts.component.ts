@@ -61,7 +61,7 @@ export class ChartsComponent implements OnInit, OnChanges {
           textPosition: 'none',
           viewWindowMode: 'maximized',
           gridlines: {
-            count: 0
+            count: 2
           }
         },
         colors: ['#3880ff']
