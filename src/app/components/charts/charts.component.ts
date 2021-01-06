@@ -1,76 +1,124 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, ViewChild } from "@angular/core";
 
-import { ChartReadyEvent, GoogleChartInterface } from 'ng2-google-charts';
+import {
+  ApexAxisChartSeries,
+  ApexTitleSubtitle,
+  ApexDataLabels,
+  ApexChart
+} from "ng-apexcharts";
 
+export type ChartOptions = {
+  series: ApexAxisChartSeries;
+  chart: ApexChart;
+  dataLabels: ApexDataLabels;
+  title: ApexTitleSubtitle;
+  colors: any;
+};
 
 @Component({
-  selector: 'app-charts',
-  templateUrl: './charts.component.html',
-  styleUrls: ['./charts.component.scss'],
+  selector: "app-charts",
+  templateUrl: "./charts.component.html",
+  styleUrls: ["./charts.component.scss"]
 })
-export class ChartsComponent implements OnInit, OnChanges {
+export class ChartsComponent {
+  @ViewChild("chart") chart: ChartsComponent;
+  public chartOptions: Partial<ChartOptions>;
 
-  constructor() { }
-
-  @Input() dataTable: Array<any>;
-
-  public chart: GoogleChartInterface;
-
-  private isReady = false;
-
-  private redraw(): void {
-    if (this.isReady) {
-      this.chart.dataTable = this.dataTable;
-      this.chart.component.draw();
-    }
-  }
-
-  public ready(event: ChartReadyEvent): void {
-    this.isReady = true;
-  }
-
-  private openAsPNG() {
-    if (this.isReady) {
-      const imageURI = this.chart.component.wrapper.getChart().getImageURI();
-      console.log(imageURI);
-    }
-  }
-
-  ngOnInit() {
-    this.chart = {
-      chartType: 'BarChart',
-      dataTable: this.dataTable,
-      firstRowIsData: true,
-      options: {
-        reverseCategories: true,
-        animation: {
-          duration: 1000,
-          easing: 'out',
-          startup: true,
+  constructor() {
+    this.chartOptions = {
+      series: [
+        {
+          name: "Metric1",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
         },
-        legend: {
-          position: 'none'
+        {
+          name: "Metric2",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
         },
-        bar: {
-          groupWidth: '80%'
+        {
+          name: "Metric3",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
         },
-        chartArea: {
-          height: '100%'
+        {
+          name: "Metric4",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
         },
-        hAxis: {
-          textPosition: 'none',
-          viewWindowMode: 'maximized',
-          gridlines: {
-            count: 2
-          }
+        {
+          name: "Metric5",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
         },
-        colors: ['#3880ff']
+        {
+          name: "Metric6",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "Metric7",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "Metric8",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
+        },
+        {
+          name: "Metric9",
+          data: this.generateData(18, {
+            min: 0,
+            max: 90
+          })
+        }
+      ],
+      chart: {
+        height: 350,
+        type: "heatmap"
+      },
+      dataLabels: {
+        enabled: false
+      },
+      colors: ["#008FFB"],
+      title: {
+        text: "HeatMap Chart (Single color)"
       }
     };
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    this.redraw();
-  }
+  public generateData(count, yrange) {
+    var i = 0;
+    var series = [];
+    while (i < count) {
+      var x = "w" + (i + 1).toString();
+      var y =
+        Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 
+      series.push({
+        x: x,
+        y: y
+      });
+      i++;
+    }
+    return series;
+  }
 }

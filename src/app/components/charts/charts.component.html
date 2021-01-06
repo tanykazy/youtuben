@@ -1,6 +1,10 @@
-<ion-item>
-
-    <google-chart [data]="chart" (chartReady)="ready($event);">
-    </google-chart>
-
-</ion-item>
+<!--The content below is only a placeholder and can be replaced.-->
+<div id="chart">
+  <apx-chart
+    [series]="chartOptions.series"
+    [chart]="chartOptions.chart"
+    [dataLabels]="chartOptions.dataLabels"
+    [title]="chartOptions.title"
+    [colors]="chartOptions.colors"
+  ></apx-chart>
+</div>

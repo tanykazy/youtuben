@@ -28,9 +28,9 @@ export class Tab3Page implements OnInit {
   }
 
   private setData(): void {
-    this.recordCountService.loadRecord();
-    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
-    this.dataTable = this.createSeriesData(records);
+//    this.recordCountService.loadRecord();
+//    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
+//    this.dataTable = this.createSeriesData(records);
   }
 
   ngOnInit() {
