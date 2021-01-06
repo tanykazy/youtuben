@@ -1,7 +1,5 @@
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { Ng2GoogleChartsModule } from 'ng2-google-charts';
+import { NgApexchartsModule } from "ng-apexcharts";
 
 import { ChartsComponent } from './charts/charts.component';
 
@@ -10,14 +8,17 @@ import { ChartsComponent } from './charts/charts.component';
         ChartsComponent,
     ],
     imports: [
-        CommonModule,
-        Ng2GoogleChartsModule,
+        NgApexchartsModule,
     ],
     exports: [
         ChartsComponent,
     ],
     schemas: [
         CUSTOM_ELEMENTS_SCHEMA
-    ]
+    ],
+    bootstrap: [
+        ComponentsModule
+    ],
+    providers: [],
 })
 export class ComponentsModule { }
