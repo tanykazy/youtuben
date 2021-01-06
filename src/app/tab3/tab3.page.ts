@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RecordCountService, PlayCount } from '../services/record-count.service';
+// import { RecordCountService, PlayCount } from '../services/record-count.service';
 
 @Component({
   selector: 'app-tab3',
@@ -8,36 +8,35 @@ import { RecordCountService, PlayCount } from '../services/record-count.service'
 })
 export class Tab3Page implements OnInit {
 
-  constructor(
-    private recordCountService: RecordCountService) {
-  }
+  constructor() { }
 
-  dataTable: Array<any>;
+  // dataTable: Array<any>;
 
-  private createSeriesData(records: Array<PlayCount>): Array<any> {
-    const result = [];
-    records = records.slice(-7);
-    for (const record of records) {
-      const date = new Date(record.t);
-      result.push([
-        [date.getMonth() + 1, '/', date.getDate()].join(''),
-        record.c
-      ]);
-    }
-    return result;
-  }
+  // private createSeriesData(records: Array<PlayCount>): Array<any> {
+    // const result = [];
+    // records = records.slice(-7);
+    // for (const record of records) {
+      // const date = new Date(record.t);
+      // result.push([
+        // [date.getMonth() + 1, '/', date.getDate()].join(''),
+        // record.c
+      // ]);
+    // }
+    // return result;
+  // }
 
   private setData(): void {
-//    this.recordCountService.loadRecord();
-//    const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
-//    this.dataTable = this.createSeriesData(records);
+    // this.recordCountService.loadRecord();
+    // const records: Array<PlayCount> = this.recordCountService.getHalfYearRecord();
+    // console.log(records);
+    // this.dataTable = this.createSeriesData(records);
   }
 
   ngOnInit() {
-    this.setData();
+    // this.setData();
   }
 
   ionViewDidEnter() {
-    this.setData();
+    // this.setData();
   }
 }
