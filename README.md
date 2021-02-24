@@ -33,11 +33,7 @@ npx ionic serve
 
 ## Build and Deploy the app
 
-```
-npx ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
-
-npx angular-cli-ghpages --dir=www
-```
+The build process is automated with GitHub Actions. If you commit to the master branch, it will be automatically deployed to GitHub Pages.
 
 ## License
 
