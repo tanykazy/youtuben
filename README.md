@@ -2,7 +2,7 @@
 
 Learn English with YouTube
 
-## Developing Environment
+## Development Environment
 
 Download the src and install the dependencies using yarn:
 
