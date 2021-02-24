@@ -49,29 +49,13 @@ export class ChartsComponent {
       },
       plotOptions: {
         heatmap: {
-          // radius: 2,
-          // enableShades: true,
-          // shadeIntensity: 0.5,
-          // reverseNegativeShade: true,
-          // distributed: false,
-          // useFillColorAsStroke: false,
           colorScale: {
-            ranges: [{
-              // from: 1,
-              // to: 0,
-              // color: undefined,
-              // foreColor: undefined,
-              // name: undefined,
-            }],
-            // inverse: false,
-            // min: undefined,
-            // max: undefined
+            ranges: [
+              {}
+            ],
           },
         }
       },
-      // xaxis: {
-      // type: "numeric",
-      // }, 
     };
   }
 
@@ -83,14 +67,12 @@ export class ChartsComponent {
     for (const record of records) {
       const date = new Date(record.t);
       const day = new Intl.DateTimeFormat('en', { weekday: 'short' }).format(date);
-      // const day = 'w' + Math.floor((now - record.t) / (24 * 60 * 60 * 7 * 1000));
 
       if (!tmp[day]) {
         tmp[day] = [];
       }
 
       tmp[day].push({
-        // x: new Intl.DateTimeFormat('en', { weekday: 'short' }).format(date),
         x: 'w' + Math.floor((now - record.t) / (24 * 60 * 60 * 7 * 1000)),
         y: record.c
       });
@@ -114,5 +96,4 @@ export class ChartsComponent {
     console.log(records);
     return this.createSeriesData(records);
   }
-
 }
