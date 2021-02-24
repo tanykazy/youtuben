@@ -1,0 +1,24 @@
+name: Build and deploy website
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 14.x
+    - name: Install NPM packages
+      run: yarn
+    - name: Build website
+      run: npx ng run app:build:production --base-href "https://gdg-nara.github.io/youtuben/"
+    - name: Deploy website
+      uses: peaceiris/actions-gh-pages@v3.6.4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: build
